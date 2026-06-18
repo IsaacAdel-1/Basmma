@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بصماية</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Tajawal:wght@400;500;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== نظام ألوان الهوية البصرية ===== */
+  :root {
+    --bg: #ffffff;           /* الأرضية - أبيض */
+    --bg-alt: #f5f5f6;       /* أرضية بديلة - رمادي فاتح جداً */
+    --surface: #fafafa;      /* أسطح الكروت */
+    --heading: #8a1538;      /* العناوين المهمة - نبيتي */
+    --heading-red: #c0152b;  /* أحمر للعناصر المهمة */
+    --text: #1a1a1a;         /* النص الأساسي - أسود */
+    --text-2: #444444;       /* أسود أفتح */
+    --text-3: #777777;       /* رمادي - الكلام الأدق/الثانوي */
+    --border: #e6e6e8;       /* رمادي حدود */
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Tajawal', sans-serif; background: var(--bg); color: var(--text); }
+  .display { font-family: 'Amiri', serif; }
+
+  /* ===== Navbar ===== */
+  .nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px; background: var(--bg);
+    border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50;
+  }
+  .nav .logo { font-family: 'Amiri', serif; font-weight: 700; color: var(--heading); font-size: 24px; }
+  .nav-links { display: flex; gap: 28px; }
+  .nav-links a { color: var(--text-2); text-decoration: none; font-size: 15px; transition: color .2s; }
+  .nav-links a:hover { color: var(--heading); }
+  .nav-cta { color: var(--heading); border: 1.5px solid var(--heading); padding: 9px 22px; border-radius: 24px; font-size: 14px; font-weight: 700; background: transparent; cursor: pointer; transition: all .2s; }
+  .nav-cta:hover { background: var(--heading); color: #fff; }
+
+  /* ===== Hero ===== */
+  .hero { background: var(--bg-alt); padding: 90px 24px 100px; text-align: center; }
+  .hero .eyebrow { color: var(--heading-red); font-size: 14px; letter-spacing: 4px; font-weight: 700; }
+  .hero .brand { font-family: 'Amiri', serif; color: var(--heading); font-size: 56px; font-weight: 700; margin: 18px 0 28px; }
+  .hero h1 { font-family: 'Amiri', serif; font-size: 44px; line-height: 1.5; color: var(--text); max-width: 760px; margin: 0 auto 8px; }
+  .hero h1 .accent { color: var(--heading); }
+  .hero p { color: var(--text-3); font-size: 17px; max-width: 540px; margin: 22px auto 38px; line-height: 1.9; }
+  .hero-btns { display: flex; gap: 14px; justify-content: center; }
+  .btn-primary { background: var(--heading); color: #fff; padding: 14px 34px; border-radius: 30px; font-weight: 700; font-size: 15px; border: none; cursor: pointer; transition: opacity .2s; }
+  .btn-primary:hover { opacity: .9; }
+  .btn-outline { background: transparent; color: var(--text-2); padding: 14px 34px; border-radius: 30px; font-weight: 700; font-size: 15px; border: 1.5px solid var(--border); cursor: pointer; transition: all .2s; }
+  .btn-outline:hover { border-color: var(--heading); color: var(--heading); }
+
+  /* ===== Section base ===== */
+  .section { padding: 80px 48px; }
+  .section-eyebrow { text-align: center; color: var(--heading-red); font-size: 13px; letter-spacing: 4px; font-weight: 700; margin-bottom: 14px; }
+  .section-title { font-family: 'Amiri', serif; text-align: center; font-size: 42px; color: var(--text); margin-bottom: 12px; }
+  .section-sub { text-align: center; color: var(--text-3); font-size: 16px; max-width: 600px; margin: 0 auto 50px; line-height: 1.8; }
+
+  /* ===== About ===== */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .about-text .eyebrow { color: var(--heading-red); font-size: 13px; letter-spacing: 4px; font-weight: 700; }
+  .about-text h2 { font-family: 'Amiri', serif; color: var(--heading); font-size: 46px; margin: 16px 0 26px; }
+  .about-text p { color: var(--text-2); font-size: 16px; line-height: 2; margin-bottom: 18px; }
+  .about-text p.soft { color: var(--text-3); }
+  .about-cards { display: flex; flex-direction: column; gap: 18px; }
+  .a-card { display: flex; align-items: center; gap: 18px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .a-card .ic { width: 46px; height: 46px; border-radius: 12px; background: #fdeef0; color: var(--heading-red); display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .a-card .ct h3 { color: var(--text); font-size: 17px; margin-bottom: 5px; font-weight: 700; }
+  .a-card .ct p { color: var(--text-3); font-size: 14px; line-height: 1.6; }
+
+  /* ===== Collections / Occasions ===== */
+  .occ-bg { background: var(--bg-alt); }
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 40px; }
+  .chip { padding: 9px 20px; border-radius: 24px; border: 1px solid var(--border); background: var(--bg); color: var(--text-2); font-size: 14px; cursor: pointer; font-weight: 500; transition: all .2s; }
+  .chip:hover { border-color: var(--heading); color: var(--heading); }
+  .chip.active { background: var(--heading); color: #fff; border-color: var(--heading); }
+  .group-label { text-align: center; color: var(--text-3); font-size: 15px; margin-bottom: 30px; }
+  .grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; max-width: 1200px; margin: 0 auto; }
+  .item { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 14px; box-shadow: 0 2px 10px rgba(0,0,0,.04); transition: box-shadow .25s, transform .25s; }
+  .item:hover { box-shadow: 0 10px 26px rgba(0,0,0,.10); transform: translateY(-4px); }
+  .item .thumb { aspect-ratio: 3/4; border-radius: 12px; overflow: hidden; background: var(--bg-alt); }
+  .item .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s ease; }
+  .item:hover .thumb img { transform: scale(1.05); }
+  .item h4 { color: var(--text); font-size: 16px; font-weight: 700; margin: 14px 8px 4px; text-align: right; }
+  .item span { color: var(--text-3); font-size: 13px; display: block; text-align: right; margin: 0 8px 6px; }
+
+  .more-wrap { text-align: center; margin-top: 44px; }
+  .btn-more { background: transparent; color: var(--heading); border: 1.5px solid var(--heading); padding: 13px 40px; border-radius: 30px; font-family: 'Tajawal', sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; transition: all .2s; }
+  .btn-more:hover { background: var(--heading); color: #fff; }
+  .item.hidden-card { display: none; }
+  .item.reveal { animation: fadeUp .4s ease both; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* ===== Testimonials ===== */
+  .tcards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; max-width: 1150px; margin: 0 auto; }
+  .tcard { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 30px; }
+  .tcard .quote { color: var(--heading-red); font-size: 32px; font-family: Georgia, serif; line-height: 1; margin-bottom: 16px; }
+  .tcard p { color: var(--text-2); font-size: 15px; line-height: 1.9; margin-bottom: 24px; }
+  .tcard .who { display: flex; justify-content: space-between; }
+  .tcard .who .name { color: var(--text); font-weight: 700; font-size: 15px; }
+  .tcard .who .tag { color: var(--text-3); font-size: 13px; }
+
+  /* ===== Footer ===== */
+  .footer { background: var(--bg-alt); padding: 60px 48px 0; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; max-width: 1150px; margin: 0 auto; }
+  .footer .brand { font-family: 'Amiri', serif; color: var(--heading); font-size: 28px; margin-bottom: 16px; }
+  .footer p { color: var(--text-3); font-size: 14px; line-height: 1.9; }
+  .footer h5 { color: var(--text); font-size: 16px; font-weight: 700; margin-bottom: 18px; }
+  .footer ul { list-style: none; }
+  .footer ul li { margin-bottom: 12px; }
+  .footer ul li a { color: var(--text-3); text-decoration: none; font-size: 14px; transition: color .2s; }
+  .footer ul li a:hover { color: var(--heading); }
+  .socials { display: flex; gap: 12px; margin-top: 16px; }
+  .socials a { width: 42px; height: 42px; border-radius: 50%; background: var(--bg); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-2); text-decoration: none; transition: all .2s; }
+  .socials a:hover { background: var(--heading); color: #fff; border-color: var(--heading); }
+  .footer-bottom { text-align: center; color: var(--text-3); font-size: 14px; padding: 30px 0; margin-top: 50px; border-top: 1px solid var(--border); }
+
+  @media (max-width: 900px) {
+    .nav-links { display: none; }
+    .about { grid-template-columns: 1fr; gap: 36px; }
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .tcards { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    .hero h1 { font-size: 32px; }
+    .section { padding: 56px 24px; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="nav">
+    <div class="logo">بصماية</div>
+    <div class="nav-links">
+      <a href="#">المناسبات</a>
+      <a href="#">عن بصماية</a>
+      <a href="#">آراء العملاء</a>
+      <a href="#">التواصل</a>
+    </div>
+    <button class="nav-cta">تواصل معنا</button>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="eyebrow">HANDMADE WITH LOVE</div>
+    <div class="brand">بصماية</div>
+    <h1>تابلوهات مصنوعة بحب لكل مناسبة<br><span class="accent">ولمسة سلام لكل بيت</span></h1>
+    <p>كتالوج مرتّب من التابلوهات والهدايا الديكورية الأنيقة، مختار بعناية ليناسب كل مناسبة وكل ذوق.</p>
+    <div class="hero-btns">
+      <button class="btn-primary">تصفّح المناسبات ←</button>
+      <button class="btn-outline">عن بصماية</button>
+    </div>
+  </section>
+
+  <!-- Collections -->
+  <section class="section occ-bg">
+    <div class="section-eyebrow">OUR COLLECTIONS</div>
+    <h2 class="section-title">تصفّح حسب المناسبة</h2>
+    <p class="section-sub">مجموعة منتقاة بعناية من التابلوهات والهدايا، مرتّبة لتجد ما يناسبك بسهولة.</p>
+    <div class="filters">
+      <div class="chip active">الكل</div>
+      <div class="chip">تابلوهات مسيحية</div>
+      <div class="chip">آيات وصلوات</div>
+      <div class="chip">هدايا تخرّج</div>
+      <div class="chip">تابلوهات للأطفال</div>
+      <div class="chip">للأصحاب</div>
+      <div class="chip">للبنات</div>
+      <div class="chip">بيت جديد</div>
+      <div class="chip">أعياد الميلاد</div>
+    </div>
+    <div class="group-label">كل المجموعات</div>
+    <div class="grid">
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmNlNGU4Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2U4YTBiMCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmY2U0ZTgiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+MuDwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNlOGEwYjAiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="همسة ربيع"></div><h4>همسة ربيع</h4><span>للبنات</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjNlY2Y5Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2M5YThlMCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmM2VjZjkiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+MmTwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNjOWE4ZTAiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="غيوم ونجوم"></div><h4>غيوم ونجوم</h4><span>للأطفال</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjdmMGU2Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2Q0YjQ4MyIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmN2YwZTYiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+4pydPC90ZXh0Pgo8ZWxsaXBzZSBjeD0iMjI1IiBjeT0iNDcwIiByeD0iOTUiIHJ5PSIyMiIgZmlsbD0iI2Q0YjQ4MyIgb3BhY2l0eT0iMC4yNSIvPgo8L3N2Zz4=" alt="أبانا الذي في السموات"></div><h4>أبانا الذي في السموات</h4><span>آيات وصلوات</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjBlOGUwIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2E5ODM2YiIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmMGU4ZTAiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+VijwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNhOTgzNmIiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="صليب خشبي بزهور مجففة"></div><h4>صليب خشبي بزهور مجففة</h4><span>تابلوهات مسيحية</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmRlZWU0Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2UwYTg3OCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmZGVlZTQiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+PoTwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNlMGE4NzgiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="Welcome Home"></div><h4>Welcome Home</h4><span>بيت جديد</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZWZlNmRjIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2I4OTg3OCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNlZmU2ZGMiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+4piVPC90ZXh0Pgo8ZWxsaXBzZSBjeD0iMjI1IiBjeT0iNDcwIiByeD0iOTUiIHJ5PSIyMiIgZmlsbD0iI2I4OTg3OCIgb3BhY2l0eT0iMC4yNSIvPgo8L3N2Zz4=" alt="ذكرى قهوة الصبح"></div><h4>ذكرى قهوة الصبح</h4><span>للأصحاب</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZWFlNmYyIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzlhOGNjMCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNlYWU2ZjIiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+OkzwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiM5YThjYzAiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="هدية تخرّج بإطار خشبي"></div><h4>هدية تخرّج بإطار خشبي</h4><span>هدايا تخرّج</span></div>
+      <div class="item"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmNlNmU2Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2Q4ODA4MCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmY2U2ZTYiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+VrzwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNkODgwODAiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="شموع الفرح"></div><h4>شموع الفرح</h4><span>أعياد الميلاد</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmJlM2VhIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2UwOTBhOCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmYmUzZWEiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+MtzwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNlMDkwYTgiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="ورود ناعمة"></div><h4>ورود ناعمة</h4><span>للبنات</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjFlY2Y4Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2JmYTRkZCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmMWVjZjgiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+QsDwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNiZmE0ZGQiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="الأرنوب النائم"></div><h4>الأرنوب النائم</h4><span>للأطفال</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZjZlZmU0Ii8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2NmYWU3ZSIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmNmVmZTQiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+TnDwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNjZmFlN2UiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="آية من المزامير"></div><h4>آية من المزامير</h4><span>آيات وصلوات</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZWZlN2RmIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2EwN2U2NCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNlZmU3ZGYiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+VrzwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNhMDdlNjQiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="أيقونة العائلة المقدسة"></div><h4>أيقونة العائلة المقدسة</h4><span>تابلوهات مسيحية</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmRlYWRkIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2RkOWY2ZSIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmZGVhZGQiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+UkTwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNkZDlmNmUiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="بيتنا الجديد"></div><h4>بيتنا الجديد</h4><span>بيت جديد</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZWNlNGRhIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2IwOTA3MCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNlY2U0ZGEiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+knTwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNiMDkwNzAiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="صديقتي العمر"></div><h4>صديقتي العمر</h4><span>للأصحاب</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZThlM2YwIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzhmODBiOCIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNlOGUzZjAiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+OkzwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiM4ZjgwYjgiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="تابلوه تخرّج بشريط فخم"></div><h4>تابلوه تخرّج بشريط فخم</h4><span>هدايا تخرّج</span></div>
+      <div class="item hidden-card"><div class="thumb"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiB2aWV3Qm94PSIwIDAgNDUwIDYwMCI+CjxyZWN0IHdpZHRoPSI0NTAiIGhlaWdodD0iNjAwIiBmaWxsPSIjZmJlMmUyIi8+CjxyZWN0IHg9IjEyMCIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjI4MCIgcng9IjYiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iI2QyNzY3NiIgc3Ryb2tlLXdpZHRoPSIxNCIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NSIgd2lkdGg9IjE1MCIgaGVpZ2h0PSIyMTAiIGZpbGw9IiNmYmUyZTIiIG9wYWNpdHk9IjAuNSIvPgo8dGV4dCB4PSIyMjUiIHk9IjMwMCIgZm9udC1zaXplPSI3MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSI+8J+OgjwvdGV4dD4KPGVsbGlwc2UgY3g9IjIyNSIgY3k9IjQ3MCIgcng9Ijk1IiByeT0iMjIiIGZpbGw9IiNkMjc2NzYiIG9wYWNpdHk9IjAuMjUiLz4KPC9zdmc+" alt="سنة حلوة يا جميل"></div><h4>سنة حلوة يا جميل</h4><span>أعياد الميلاد</span></div>
+    </div>
+    <div class="more-wrap"><button class="btn-more" id="moreBtn">عرض المزيد ↓</button></div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section">
+    <div class="section-eyebrow">KIND WORDS</div>
+    <h2 class="section-title">آراء عملائنا</h2>
+    <div class="tcards" style="margin-top:30px">
+      <div class="tcard">
+        <div class="quote">"</div>
+        <p>التابلوه وصلني أحلى من الصور، تغليف فخم وذوق راقي جدًا. شكرًا بصماية!</p>
+        <div class="who"><span class="name">مريم. أ</span><span class="tag">هدية تخرّج</span></div>
+      </div>
+      <div class="tcard">
+        <div class="quote">"</div>
+        <p>اشتريت تابلوه لغرفة بنتي، شكله حلو جدًا وهادي على الحيطة، أنصح بيه.</p>
+        <div class="who"><span class="name">نورا. م</span><span class="tag">تابلوه أطفال</span></div>
+      </div>
+      <div class="tcard">
+        <div class="quote">"</div>
+        <p>أيقونة جميلة جدًا، تفاصيلها دقيقة وحاسس فيها بلمسة محبة حقيقية.</p>
+        <div class="who"><span class="name">كيرلس. ج</span><span class="tag">تابلوه مسيحي</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <div class="brand">بصماية</div>
+        <p>تابلوهات وهدايا ديكورية مصنوعة بحب، تليق بكل مناسبة وكل بيت.</p>
+        <div class="socials">
+          <a href="#">f</a>
+          <a href="#">◎</a>
+          <a href="#">✆</a>
+        </div>
+      </div>
+      <div>
+        <h5>روابط</h5>
+        <ul>
+          <li><a href="#">المناسبات</a></li>
+          <li><a href="#">عن بصماية</a></li>
+          <li><a href="#">آراء العملاء</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>تواصل معنا</h5>
+        <p>للاستفسار والطلب عبر واتساب مباشرة.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 بصماية — كل الحقوق محفوظة.</div>
+  </footer>
+
+  <script>
+    const moreBtn = document.getElementById('moreBtn');
+    moreBtn.addEventListener('click', () => {
+      const hidden = document.querySelectorAll('.item.hidden-card');
+      hidden.forEach((c, i) => {
+        c.classList.remove('hidden-card');
+        c.classList.add('reveal');
+        c.style.animationDelay = (i * 0.05) + 's';
+      });
+      moreBtn.parentElement.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

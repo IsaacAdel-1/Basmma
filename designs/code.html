@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>بصماية - فن التابلوهات المصنوعة بحب</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&amp;family=IBM+Plex+Sans+Arabic:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "outline-variant": "#c4c7c7",
+                    "on-primary": "#ffffff",
+                    "tertiary-container": "#1b1c19",
+                    "on-tertiary": "#ffffff",
+                    "surface-dim": "#dbdad9",
+                    "on-tertiary-fixed-variant": "#474744",
+                    "surface-container-highest": "#e4e2e2",
+                    "surface-container": "#efeded",
+                    "outline": "#747878",
+                    "on-surface": "#1b1c1c",
+                    "primary-fixed-dim": "#c8c6c5",
+                    "inverse-surface": "#303031",
+                    "secondary-fixed-dim": "#e9c176",
+                    "secondary-container": "#fed488",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f5f3f3",
+                    "on-error-container": "#93000a",
+                    "inverse-on-surface": "#f2f0f0",
+                    "inverse-primary": "#c8c6c5",
+                    "error-container": "#ffdad6",
+                    "surface": "#fbf9f9",
+                    "primary-container": "#1c1b1b",
+                    "on-secondary-fixed": "#261900",
+                    "secondary": "#775a19",
+                    "surface-variant": "#e4e2e2",
+                    "surface-tint": "#5f5e5e",
+                    "on-secondary-fixed-variant": "#5d4201",
+                    "primary-fixed": "#e5e2e1",
+                    "on-primary-fixed": "#1c1b1b",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-container": "#785a1a",
+                    "tertiary": "#000000",
+                    "on-tertiary-container": "#848480",
+                    "on-surface-variant": "#444748",
+                    "on-primary-fixed-variant": "#474746",
+                    "tertiary-fixed": "#e4e2dd",
+                    "background": "#fbf9f9",
+                    "on-background": "#1b1c1c",
+                    "secondary-fixed": "#ffdea5",
+                    "primary": "#000000",
+                    "on-tertiary-fixed": "#1b1c19",
+                    "on-primary-container": "#858383",
+                    "surface-bright": "#fbf9f9",
+                    "on-error": "#ffffff",
+                    "tertiary-fixed-dim": "#c8c6c2",
+                    "surface-container-high": "#e9e8e7",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "margin-desktop": "64px",
+                    "margin-mobile": "20px",
+                    "section-gap": "120px",
+                    "gutter": "24px",
+                    "unit": "8px",
+                    "container-max": "1440px"
+            },
+            "fontFamily": {
+                    "display-lg": ["Playfair Display", "serif"],
+                    "title-sm": ["IBM Plex Sans Arabic", "sans-serif"],
+                    "label-caps": ["IBM Plex Sans Arabic", "sans-serif"],
+                    "display-lg-mobile": ["Playfair Display", "serif"],
+                    "headline-md": ["Playfair Display", "serif"],
+                    "headline-md-mobile": ["Playfair Display", "serif"],
+                    "body-lg": ["IBM Plex Sans Arabic", "sans-serif"],
+                    "body-sm": ["IBM Plex Sans Arabic", "sans-serif"]
+            },
+            "fontSize": {
+                    "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "title-sm": ["18px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}],
+                    "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "headline-md-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                    "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #fbf9f9;
+            color: #1b1c1c;
+            scroll-behavior: smooth;
+        }
+        .frame-card {
+            padding: 24px;
+            background: #ffffff;
+            transition: all 0.5s ease;
+        }
+        .frame-card:hover {
+            transform: translateY(-8px);
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-lg overflow-x-hidden">
+<!-- 1. Header (Localized ATELIER style) -->
+<nav class="fixed top-0 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant/20">
+<div class="flex justify-between items-center h-20 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="cursor-pointer transition-opacity active:opacity-70 flex items-center">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+</div>
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tighter text-primary dark:text-inverse-primary">
+                بصماية
+            </div>
+<div class="flex items-center gap-6">
+<div class="hidden md:flex items-center gap-8 font-label-caps text-label-caps">
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#collections">المجموعات</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#about">قصتنا</a>
+<a class="text-on-surface-variant hover:text-secondary transition-colors duration-300" href="#testimonials">آراء العملاء</a>
+</div>
+<div class="cursor-pointer transition-opacity active:opacity-70">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_bag">shopping_bag</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- 2. Hero Section -->
+<section class="pt-32 pb-20 md:pt-48 md:pb-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto overflow-hidden">
+<div class="flex flex-col md:flex-row items-center gap-gutter md:gap-16">
+<div class="flex-1 text-right reveal active">
+<p class="font-label-caps text-label-caps text-secondary mb-4 tracking-[0.2em]">HANDMADE WITH LOVE</p>
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary mb-8 leading-tight">
+                    بصماية: تابلوهات مصنوعة بحب لكل مناسبة ولمسة سلام لكل بيت
+                </h1>
+<p class="font-body-lg text-on-surface-variant mb-12 max-w-xl ml-auto">
+                    نحن لا نبيع مجرد لوحات، بل نصنع ذكريات وننشر الهدوء في زوايا منزلك. كل قطعة يتم تصميمها يدوياً بعناية فائقة لتكون الهدية المثالية لك ولأحبائك.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-start">
+<button class="bg-primary text-on-primary px-10 py-5 font-label-caps text-label-caps tracking-widest hover:opacity-90 transition-all">
+                        تسوق الآن
+                    </button>
+<button class="border border-primary text-primary px-10 py-5 font-label-caps text-label-caps tracking-widest hover:bg-primary/5 transition-all">
+                        اكتشف مجموعتنا
+                    </button>
+</div>
+</div>
+<div class="flex-1 w-full relative reveal active">
+<div class="aspect-[4/5] bg-surface-container overflow-hidden">
+<img alt="بصماية آرت" class="w-full h-full object-cover" data-alt="A large, minimalist abstract canvas featuring fluid brushstrokes of gold and charcoal on a creamy white background, leaning against a clean white gallery wall. The room is filled with soft natural light streaming from a high window, creating long, delicate shadows. The scene embodies a luxurious yet serene 'Digital Atelier' aesthetic, emphasizing artisanal quality and calm harmony." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBd-AoYj66dPpqwbGyGoz90iKctvCO6iw7pDBpo5GGxDvEnr-N6HL-3iAia0tTegEDsVLsiF7UfrZ1mtwNZXgIj-EaKVKaXVzv1UvaSuPMdi52jdw7AaWS7bOj1mFVEjgmJZBFK2682lDCIjH2QBh6TaySShQpuoAGK_UMWkwRl0T-lu-O3wn-TP8kBOOYfL-HqQhIh0MxAUKZat2KIm9SxisOJ-Lt6Q7ALNKoQG5k0ef4qpcjiOqMMRzRfFs3PRYxede1L1KjMaSg"/>
+</div>
+<div class="absolute -bottom-6 -right-6 md:-bottom-12 md:-right-12 w-48 h-48 bg-secondary-container/20 -z-10"></div>
+</div>
+</div>
+</section>
+<!-- 3. Our Collections -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto" id="collections">
+<div class="flex justify-between items-end mb-16 reveal">
+<div>
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-2">CURATED SELECTIONS</p>
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary">مجموعاتنا المختارة</h2>
+</div>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-all" href="#">رؤية الكل</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Category 1 -->
+<div class="group cursor-pointer reveal">
+<div class="frame-card mb-6">
+<div class="aspect-[3/4] overflow-hidden bg-surface-container">
+<img alt="هدوء" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A framed fine art print of a serene beach landscape at dawn, with soft pastel pink and blue tones in the sky and sand. The frame is a thin, elegant black minimalist border with a wide white mat around the image. The lighting is ethereal and tranquil, perfectly matching the 'Calm and Harmony' theme of the Basmaya brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvDdRCJ-h_1eGU-BWHuMY3L4t5KOr8ygRyeD3ZiAXq_mfb31DPU60_xoFnseyV4KPDSTVXPXs8PcpnFwf6nS3VZWFLhmZKBtH-0ZRUiHBj9mbFFpnySHTCe-p_K8UKLdVNLQFNyIPXmFm5R4bBYdwuQiceur0GRmIzGYuTtFD7quFAMOe0kZ4ySOBNktyYKxDKn3xSmBZmDtw4CzyOClqQtrX_Qt06RPjVNIVVGmf-N71A5-DxaExuGig8Iz5IbCGN71j8-tL3bqM"/>
+</div>
+</div>
+<h3 class="font-title-sm text-title-sm text-primary mb-1">مجموعة هدوء</h3>
+<p class="font-body-sm text-on-surface-variant">لمسات فنية تمنح منزلك السكينة</p>
+</div>
+<!-- Category 2 -->
+<div class="group cursor-pointer reveal" style="transition-delay: 100ms;">
+<div class="frame-card mb-6">
+<div class="aspect-[3/4] overflow-hidden bg-surface-container">
+<img alt="خطوط" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="An artistic high-angle shot of a calligraphy piece on textured handmade paper, featuring elegant Arabic strokes in deep black ink. The paper is slightly worn at the edges, giving it an authentic handmade feel. The surrounding workspace is minimalist and clean, lit by a single warm studio light that highlights the physical texture of the ink." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSjgxnjbg2AsDlil6Zs3GQJyvOeLRYU3b_8WmpsAC5chUpzzI4nRWz7UpaylGH4FwW4FuUVfHrFSf1M0Tb2UEoIbk0BgXNui32C8DljkeeQldJdNOJ3mFWQrGJu0DlS-6UswvpE-9qpMnYNkduvvS7CvsgVDeoqxXrwNgAKqWoA20pQwGdME1anJfvZ1h-VSxbMMxIv5uNBHkpanms7myZk-3py_k61h4jg_qnKk5HpBCDTJIV5CI45cRNf16gwrADmvuhpqD57p8"/>
+</div>
+</div>
+<h3 class="font-title-sm text-title-sm text-primary mb-1">فن الخط العربي</h3>
+<p class="font-body-sm text-on-surface-variant">تراثنا برؤية عصرية أنيقة</p>
+</div>
+<!-- Category 3 -->
+<div class="group cursor-pointer reveal" style="transition-delay: 200ms;">
+<div class="frame-card mb-6">
+<div class="aspect-[3/4] overflow-hidden bg-surface-container">
+<img alt="نباتات" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="A collection of framed botanical illustrations featuring delicate ferns and dried leaves. The art is presented in a minimalist grid layout on a warm beige wall. The lighting is diffused and soft, creating a natural and organic atmosphere that reflects the 'Gift for Every Occasion' values of the brand through timeless natural beauty." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFZTEg9B8cmZ7cPCtCRQ4WQtIJllHsHoKJlalyANm6mHpgt0VWWbWCYkTjfjOJpUwIHkcI5gBYPlWfaiV3d-e1q5g_6NSR8FUqIsKnNk0AvZTfdlZ10nXRC-2PAICF3H5qEH0zCVT2AqClKGxjrjJ5o1LDgzmQAxZtQQFYek0welA6aUoME-q6n_nEyCcJ5uBVDy6OBXC-ueKKmHjUuBeG77DEVbHmyOjeT4bJEUCqhXXqgZLP1XX2L8qqKOS-VHQgnDhoDZCx6xg"/>
+</div>
+</div>
+<h3 class="font-title-sm text-title-sm text-primary mb-1">مجموعة الطبيعة</h3>
+<p class="font-body-sm text-on-surface-variant">أحضر جمال الخارج إلى جدرانك</p>
+</div>
+</div>
+</section>
+<!-- 4. About Basmaya -->
+<section class="py-section-gap bg-surface-container-low px-margin-mobile md:px-margin-desktop" id="about">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row gap-16 items-center">
+<div class="flex-1 reveal">
+<div class="grid grid-cols-2 gap-4">
+<img alt="العمل اليدوي" class="w-full aspect-square object-cover" data-alt="A close-up shot of an artist's hands carefully assembling a wooden frame in a bright, sun-drenched studio. Sawdust particles are visible in the light beams. The aesthetic is clean and focused on craftsmanship, with high-quality tools neatly organized in the background. The mood is one of dedicated professional precision and artisanal passion." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBl9gsTspEhbSDtzbva2py2d1MyRIsS5clgL7KtR7iSn8y4ECaqOXtRHfHVEFsOgYy5x4J5rVnblijIIuYoPUZvY3Gllr8lFfvQfMfmLxmk6XSaaXehJbkR4N7cG-IHOV9yyf50alr-iVDv8AmpTSLdZ4QnJqnVzqkjNRCoXHsQDqtSY99T98vU2lZPZ905dsBV0BdA8yuK4voNP7pPDrBaHkvV7IPUR6nWOOtZRwmpbvnjqU3YjM_wKYGPzkXGbWSaLhF2hlkW62k"/>
+<img alt="الاستوديو" class="w-full aspect-[3/4] object-cover mt-8" data-alt="A wide shot of a modern, minimalist art studio with large windows overlooking a peaceful garden. Finished canvases are displayed on easels around the room. The color palette is dominated by neutral tones like cream, grey, and charcoal, creating a sophisticated 'Digital Atelier' vibe. The workspace is pristine and inspires a sense of calm and creative harmony." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXojaGL4ken7f0ANEmWxuho6VLSznOdfOK8IADZTw_jpzobLbC3DxPq7YlaZ0YzL6-e_QLvQaR5HsvXPGxX-dKtm8hNgHCyvNVKyuODedxzfoHWdfSQIM8up49TXhos2_jUmlwJiDY6TD6lJnBW1W_4I_uUcyJM7ey2TXQ09NH_jjCjJFe16kZ9WJw6HEcNasl3Qfk7hS-MttFwz4eJJ17-SBJ3tJiztixKE5tl2sg0rkLjRNddjjw0kt8E1_td1cN2UQ0ulxUWoQ"/>
+</div>
+</div>
+<div class="flex-1 reveal">
+<p class="font-label-caps text-label-caps text-secondary mb-4">OUR STORY &amp; VALUES</p>
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary mb-8">حيث يلتقي الفن مع الروح</h2>
+<div class="space-y-10">
+<div class="flex gap-6">
+<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="favorite">favorite</span>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-primary mb-2">مصنوعة بحب</h4>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">كل تابلوه يخرج من استوديو بصماية يحمل جزءاً من شغفنا. نؤمن أن العمل اليدوي يمنح القطعة روحاً لا تملكها المصانع.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="spa">spa</span>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-primary mb-2">هدوء وتناغم</h4>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">تصميماتنا تهدف إلى خلق مساحة من السلام النفسي داخل منزلك، بعيداً عن ضجيج الحياة اليومية المتسارع.</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-12 h-12 flex-shrink-0 flex items-center justify-center border border-primary">
+<span class="material-symbols-outlined text-primary" data-icon="card_giftcard">card_giftcard</span>
+</div>
+<div>
+<h4 class="font-title-sm text-title-sm text-primary mb-2">هدية لكل مناسبة</h4>
+<p class="font-body-sm text-on-surface-variant leading-relaxed">سواء كان منزلاً جديداً، زفافاً، أو مجرد تعبير عن التقدير، فإن تابلوهاتنا هي الرسالة الأرقى التي يمكن تقديمها.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Customer Testimonials -->
+<section class="py-section-gap px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto text-center overflow-hidden" id="testimonials">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-4">KIND WORDS</p>
+<h2 class="font-headline-md text-headline-md-mobile md:text-headline-md text-primary mb-16">ماذا يقول عملاؤنا</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Review 1 -->
+<div class="frame-card reveal border border-outline-variant/10 text-right">
+<div class="flex gap-1 text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-primary mb-8 italic">"لقد غيرت اللوحة شكل غرفة المعيشة تماماً. الجودة مذهلة والتفاصيل تنطق بالحب الذي صُنعت به. شكراً بصماية!"</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high"></div>
+<div>
+<p class="font-label-caps text-label-caps text-primary">سارة أحمد</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">مصممة ديكور</p>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="frame-card reveal border border-outline-variant/10 text-right" style="transition-delay: 150ms;">
+<div class="flex gap-1 text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-primary mb-8 italic">"كانت الهدية الأجمل التي قدمتها لصديقتي في زفافها. التغليف والاهتمام بالتفاصيل كان فوق التوقعات."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high"></div>
+<div>
+<p class="font-label-caps text-label-caps text-primary">ليلى محمود</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">عميلة مخلصة</p>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="frame-card reveal border border-outline-variant/10 text-right" style="transition-delay: 300ms;">
+<div class="flex gap-1 text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="font-body-lg text-primary mb-8 italic">"فن حقيقي يمس الروح. من الرائع وجود علامة تجارية محلية تهتم بهذا المستوى من الرقي والجمال."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-surface-container-high"></div>
+<div>
+<p class="font-label-caps text-label-caps text-primary">ياسين عمر</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-tighter">جامع تحف فنية</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Footer -->
+<footer class="bg-surface dark:bg-surface border-t border-outline-variant/20 w-full mt-section-gap">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<div class="text-right">
+<div class="font-label-caps text-label-caps tracking-widest text-primary mb-2 uppercase">بصماية</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 DIGITAL ATELIER. ALL RIGHTS RESERVED.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Instagram</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Facebook</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Terms</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">Privacy</a>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container hover:bg-secondary-container/30 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary" data-icon="mail">mail</span>
+</div>
+<div class="w-10 h-10 flex items-center justify-center bg-surface-container hover:bg-secondary-container/30 transition-all cursor-pointer">
+<span class="material-symbols-outlined text-primary" data-icon="phone">phone</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
+        // Simple reveal animation on scroll
+        const reveals = document.querySelectorAll('.reveal');
+
+        function reveal() {
+            for (let i = 0; i < reveals.length; i++) {
+                const windowHeight = window.innerHeight;
+                const elementTop = reveals[i].getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', reveal);
+        // Initial check
+        reveal();
+
+        // Parallax effect for the hero image
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const heroImg = document.querySelector('.hero-image');
+            if(heroImg) {
+                heroImg.style.transform = 'translateY(' + (scrolled * 0.1) + 'px)';
+            }
+        });
+    </script>
+</body></html>

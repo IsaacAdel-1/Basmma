@@ -1,0 +1,72 @@
+[
+  {
+    "slug": "prayers",
+    "title": "تابلوهات صلوات",
+    "blurb": "صلوات تملأ المكان سكينة وتفكّرك إن ربنا قريب في كل وقت.",
+    "products": [
+      { "title": "صلاة السكينة", "image": "/products/prayers/prayers-1.jpg" },
+      { "title": "صلاة العام الجديد", "image": "/products/prayers/prayers-2.jpg" },
+      { "title": "صلاة قبل الأكل", "image": "/products/prayers/prayers-3.jpg" },
+      { "title": "صلاة قبل الامتحان", "image": "/products/prayers/prayers-4.jpg" },
+      { "title": "صلاة يعبيص", "image": "/products/prayers/prayers-5.jpg" },
+      { "title": "لك القوة", "image": "/products/prayers/prayers-6.jpg" },
+      { "title": "يا رب", "image": "/products/prayers/prayers-7.jpg" }
+    ]
+  },
+  {
+    "slug": "verses",
+    "title": "تابلوهات آيات مسيحية",
+    "blurb": "آيات بتلمس القلب، بتصميم وألوان راقية تليق بكلمة الكتاب.",
+    "products": [
+      { "title": "أصحاح المحبة", "image": "/products/verses/verses-1.jpg" },
+      { "title": "خروجه يقين", "image": "/products/verses/verses-2.jpg" },
+      { "title": "دعوا الأولاد", "image": "/products/verses/verses-3.jpg" },
+      { "title": "راحمك الرب", "image": "/products/verses/verses-4.jpg" },
+      { "title": "عمله رهيب", "image": "/products/verses/verses-5.jpg" },
+      { "title": "كان لخيري", "image": "/products/verses/verses-6.jpg" },
+      { "title": "لأنك تنسى المشقة", "image": "/products/verses/verses-7.jpg" },
+      { "title": "يعطيك ما تحتاج", "image": "/products/verses/verses-8.jpg" },
+      { "title": "يعينها الله", "image": "/products/verses/verses-9.jpg" },
+      { "title": "يمنحك سلامًا", "image": "/products/verses/verses-10.jpg" },
+      { "title": "أب حقيقي", "image": "/products/verses/verses-11.jpg" },
+      { "title": "راعي صالح", "image": "/products/verses/verses-12.jpg" },
+      { "title": "The Lord", "image": "/products/verses/verses-13.jpg" },
+      { "title": "مع الله ممكن", "image": "/products/verses/verses-14.jpg" },
+      { "title": "يقيمني على مرتفعاتي", "image": "/products/verses/verses-15.jpg" }
+    ]
+  },
+  {
+    "slug": "girls",
+    "title": "تابلوهات للبنات",
+    "blurb": "كلمات بتفكّر كل بنت إنها جميلة وقيّمة ومحبوبة.",
+    "products": [
+      { "title": "أنتِ جميلة", "image": "/products/girls/girls-1.jpg" },
+      { "title": "تغني كأيام صباها", "image": "/products/girls/girls-2.jpg" },
+      { "title": "كلك جميل", "image": "/products/girls/girls-3.jpg" },
+      { "title": "كلك", "image": "/products/girls/girls-4.jpg" }
+    ]
+  },
+  {
+    "slug": "home",
+    "title": "تابلوهات لبيت جديد",
+    "blurb": "هدية مثالية لبيت جديد، بتملأه بركة ودفا من أول يوم.",
+    "products": [
+      { "title": "أعطيكم قلبًا واحدًا", "image": "/products/home/home-1.jpg" },
+      { "title": "بيوت صلاة", "image": "/products/home/home-2.jpg" },
+      { "title": "جسد واحد", "image": "/products/home/home-3.jpg" },
+      { "title": "على هذا البيت", "image": "/products/home/home-4.jpg" },
+      { "title": "عيناك مفتوحتين", "image": "/products/home/home-5.jpg" }
+    ]
+  },
+  {
+    "slug": "misc",
+    "title": "تابلوهات منوعة",
+    "blurb": "كلمات ملهمة لكل المساحات والأذواق، تنشر طاقة إيجابية حواليك.",
+    "products": [
+      { "title": "بالصبر تطرح ورد", "image": "/products/misc/misc-1.jpg" },
+      { "title": "جرّب كتير", "image": "/products/misc/misc-2.jpg" },
+      { "title": "عزيزي أنا", "image": "/products/misc/misc-3.jpg" },
+      { "title": "قهوة", "image": "/products/misc/misc-4.jpg" }
+    ]
+  }
+]

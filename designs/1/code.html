@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>تفاصيل اللوحة - ATELIER</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=IBM+Plex+Sans:wght@300;400;600;700&amp;family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        /* Custom Font Overrides for Arabic Compatibility */
+        body {
+            font-family: 'IBM Plex Sans Arabic', 'IBM Plex Sans', sans-serif;
+        }
+        .font-display-lg, .font-headline-md {
+            font-family: 'Playfair Display', 'IBM Plex Sans Arabic', serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .frame-matting {
+            padding: 3rem;
+            background-color: #ffffff;
+            box-shadow: inset 0 0 40px rgba(0,0,0,0.05);
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-container": "#fed488",
+                        "on-surface-variant": "#444748",
+                        "on-secondary-container": "#785a1a",
+                        "on-tertiary-fixed-variant": "#474744",
+                        "on-surface": "#1b1c1c",
+                        "on-tertiary-fixed": "#1b1c19",
+                        "on-primary-fixed-variant": "#474746",
+                        "error-container": "#ffdad6",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f5f3f3",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed-variant": "#5d4201",
+                        "inverse-on-surface": "#f2f0f0",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed-dim": "#e9c176",
+                        "inverse-surface": "#303031",
+                        "on-error": "#ffffff",
+                        "surface": "#fbf9f9",
+                        "tertiary-fixed-dim": "#c8c6c2",
+                        "primary-fixed-dim": "#c8c6c5",
+                        "on-tertiary-container": "#848480",
+                        "on-primary-container": "#858383",
+                        "surface-bright": "#fbf9f9",
+                        "surface-variant": "#e4e2e2",
+                        "primary-fixed": "#e5e2e1",
+                        "on-tertiary": "#ffffff",
+                        "on-primary": "#ffffff",
+                        "on-primary-fixed": "#1c1b1b",
+                        "background": "#fbf9f9",
+                        "surface-container": "#efeded",
+                        "secondary-fixed": "#ffdea5",
+                        "primary-container": "#1c1b1b",
+                        "surface-tint": "#5f5e5e",
+                        "secondary": "#775a19",
+                        "tertiary-fixed": "#e4e2dd",
+                        "on-background": "#1b1c1c",
+                        "tertiary": "#000000",
+                        "surface-container-high": "#e9e8e7",
+                        "tertiary-container": "#1b1c19",
+                        "primary": "#000000",
+                        "on-secondary-fixed": "#261900",
+                        "outline": "#747878",
+                        "inverse-primary": "#c8c6c5",
+                        "surface-container-highest": "#e4e2e2",
+                        "surface-dim": "#dbdad9",
+                        "outline-variant": "#c4c7c7",
+                        "on-error-container": "#93000a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-max": "1440px",
+                        "margin-mobile": "20px",
+                        "unit": "8px",
+                        "section-gap": "120px",
+                        "margin-desktop": "64px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline-md-mobile": ["Playfair Display", "serif"],
+                        "body-lg": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "display-lg": ["Playfair Display", "serif"],
+                        "body-sm": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "title-sm": ["IBM Plex Sans Arabic", "sans-serif"],
+                        "headline-md": ["Playfair Display", "serif"],
+                        "display-lg-mobile": ["Playfair Display", "serif"],
+                        "label-caps": ["IBM Plex Sans Arabic", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md-mobile": ["24px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "body-lg": ["16px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-sm": ["14px", {"lineHeight": "1.6", "fontWeight": "400"}],
+                        "title-sm": ["18px", {"lineHeight": "1.5", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "headline-md": ["32px", {"lineHeight": "1.3", "fontWeight": "600"}],
+                        "display-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "label-caps": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.1em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface selection:bg-secondary-container selection:text-on-secondary-container">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-surface dark:bg-surface border-b border-outline-variant/20 h-20">
+<nav class="flex justify-between items-center h-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto">
+<div class="flex items-center gap-6">
+<button class="flex items-center gap-2 cursor-pointer transition-opacity active:opacity-70 group" onclick="window.history.back()">
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform">arrow_forward</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">الرجوع</span>
+</button>
+</div>
+<div class="font-display-lg text-display-lg-mobile md:text-display-lg tracking-tighter text-primary dark:text-inverse-primary">
+                ATELIER
+            </div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary cursor-pointer transition-opacity active:opacity-70">shopping_bag</span>
+</div>
+</nav>
+</header>
+<main class="pt-24 pb-section-gap">
+<!-- Hero Section: Lifestyle Visualization -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mb-16">
+<div class="relative w-full aspect-[16/9] overflow-hidden bg-surface-container rounded-none">
+<img alt="Lifestyle Artwork View" class="w-full h-full object-cover grayscale-[20%] brightness-[95%]" data-alt="A large-scale minimalist abstract painting hanging on a pristine white gallery wall within a sun-drenched, high-ceilinged modern living room. The room is furnished with a sleek low-profile charcoal sofa and a light oak coffee table, reflecting a professional light-mode aesthetic. Soft natural light flows from a tall window, casting gentle shadows that emphasize the texture of the canvas. The overall mood is sophisticated, airy, and serene, prioritizing high-end interior design and architectural precision." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDl_0doOhuO7pIY1Gser63zUTwxzgmr7i92VkwxTg-TlYqaqtsaKwYwPpkIVevudjD0BSB1MVY6gp-pFFmpNOenxB-nXtQN0iNeeQiVsU1czDwoQAmkGSlZNJtiGdze0LAJvZn7C8f3YGzX4c8InnE3hoSxJC7Eaw4U04j1ey8bZDfPtY1QRXfGDvjM2zPRSae7LTRb64MaqlzOguCNDd6gGrG2ixkRPPHQWjXsCVqTdyM9ugxIYvLBY8ur4ItwlXzS9aep1gxC_tM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+</div>
+</section>
+<!-- Product Content Grid -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter items-start">
+<!-- Left: Artwork Zoom/Details (Sticky on desktop) -->
+<div class="md:col-span-7 space-y-gutter">
+<div class="frame-matting border border-outline-variant/10">
+<img alt="Tableau Close-up" class="w-full aspect-[4/5] object-cover shadow-2xl" data-alt="A detailed, close-up shot of a contemporary abstract oil painting showcasing heavy impasto brushstrokes and rich textures. The color palette is dominated by warm creams, deep charcoal, and subtle gold leaf accents, aligned with the Digital Atelier aesthetic. The lighting is studio-quality, revealing every nuance of the artist's technique and the high-quality linen canvas texture. The image conveys luxury, artisanal craftsmanship, and modern artistic value." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfm7oE-v5MWZN1y1BQz0TTRyEXkPhSXOt8ZTwTb9UVEjk6Tke1ypTrFvKpgjeSmO1csdjiFj-LUMtG0fuunbQLZPw0odzoVqq8OX8T2IXeVbH7g2pK0ZJC377bj3CMKXpSPiVAoQUfWXPV0THNE2gUHfjr9FjmEz3zaFI8jqhfHcQYKD62UhnHQfic0eQP8BaCsmTbwnT5W7WURHC8LocxhMjzaE_OcEWxQFFT7GbA7zyPUdRijmV5NlPz3hQMGJOIH7YAj11100g"/>
+</div>
+</div>
+<!-- Right: Information & Actions -->
+<div class="md:col-span-5 md:sticky md:top-32 space-y-10">
+<header class="space-y-4">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-primary">اسم اللوحة الفنية</h1>
+<div class="flex gap-4">
+<span class="bg-secondary-container/20 text-on-secondary-container px-3 py-1 font-label-caps text-[10px] tracking-widest">مجموعة ٢٠٢٤</span>
+<span class="bg-surface-container-high text-on-surface-variant px-3 py-1 font-label-caps text-[10px] tracking-widest">إصدار محدود</span>
+</div>
+</header>
+<div class="space-y-6">
+<h2 class="font-title-sm text-title-sm text-primary border-b border-outline-variant/20 pb-2 inline-block">عن العمل</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed">
+                        وصف فني للوحة وكيفية تنفيذها. تمثل هذه اللوحة تجسيداً فنياً للهدوء والاتزان، حيث استخدم الفنان تقنيات دمج الطبقات اللونية لخلق عمق بصري يشد الناظر. تم التنفيذ باستخدام ألوان زيتية فاخرة على كانفاس كتاني عالي الجودة لضمان بقاء الألوان ببهائها لعقود.
+                    </p>
+</div>
+<div class="grid grid-cols-2 gap-8 py-8 border-y border-outline-variant/20">
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">المقاسات المتاحة</h3>
+<p class="font-title-sm text-title-sm">٨٠ × ١٠٠ سم</p>
+<p class="font-body-sm text-body-sm text-outline">١٢٠ × ١٥٠ سم</p>
+</div>
+<div>
+<h3 class="font-label-caps text-label-caps text-on-surface-variant mb-2">نوع الإطار</h3>
+<p class="font-title-sm text-title-sm">خشب بلوط طبيعي</p>
+<p class="font-body-sm text-body-sm text-outline">بدون إطار (مودرن)</p>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<button class="bg-primary text-on-primary w-full py-5 font-label-caps text-label-caps tracking-[0.2em] hover:bg-on-surface-variant transition-colors duration-300">
+                        اطلب الآن
+                    </button>
+<button class="border border-primary text-primary w-full py-5 font-label-caps text-label-caps tracking-[0.2em] hover:bg-surface-container transition-colors duration-300">
+                        تواصل للاستفسار
+                    </button>
+</div>
+<div class="flex items-center gap-3 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">verified</span>
+<span class="font-body-sm text-body-sm">شهادة أصالة موقعة مرفقة مع كل لوحة</span>
+</div>
+</div>
+</section>
+<!-- Related Works -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop mt-section-gap">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-2">
+<span class="font-label-caps text-label-caps text-secondary">المجموعة المختارة</span>
+<h2 class="font-headline-md text-headline-md">أعمال ذات صلة</h2>
+</div>
+<a class="font-label-caps text-label-caps text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors" href="#">استعراض الكل</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Related Item 1 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] overflow-hidden bg-surface-container mb-6 relative">
+<img alt="Artwork 1" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A vertical minimalist photograph of a solitary boat on a calm, misty lake at dawn. The image is ethereal with soft greys and muted blues, framed by a thick white matting in a charcoal frame. It captures a peaceful, cinematic mood that fits perfectly into a sophisticated gallery collection. The lighting is low-contrast and diffused, typical of early morning fog." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtLK1RpbtnMYL5d9fM5R3rcSz96a8BClTPhqWcX95fWjk3CS_hPZ78ZB8yTiPOQmP1LScwrvfwTdbhwBGy8w-bDjiPVRp1tFSwPtdGd80H3MHOAfRZSjDRhLahtu3Xc202JzomiY9gF9PYgwrdPJXG3G4f75zHJtZzyG-aQguxUbbLpws8D0nPGgSZQ0sNutEeC4JtsKv0ctZEN71Ei0yLRHm5atHWQ7p3dlfHCWz_ri0RJO2GOkEf-chyMF5S_ETcFduuQ9uvFhA"/>
+</div>
+<h3 class="font-title-sm text-title-sm mb-1">تأملات الصباح</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">مجموعة الطبيعة الصامتة</p>
+</div>
+<!-- Related Item 2 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] overflow-hidden bg-surface-container mb-6 relative">
+<img alt="Artwork 2" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="An abstract expressionist painting featuring bold, sweeping black ink strokes across a textured cream background. Touches of gold leaf add a luxurious shimmer to the composition. The artwork is presented in a minimalist, gallery-style aesthetic with plenty of negative space. The lighting highlights the tactile quality of the heavy paper and the metallic sheen of the gold accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD55Yb-SP2bVAfsviAlHfegYCdRvShOMMNQdEy4ViAXxfg_jyWxfmI4YRo1qcuHxsAX2L7UMVE4IRozZgKfKoiuBT3REyzE5IevQpHl15hMX3-DIiOm7N5IDkMe9trv4YZDlzlXkkReih1n-7NXXhAkaVDvyW0jdn9qNJChKlmv9n7puEBTVJVLkPloG-igqsqg9v76Y3GNl6DPw1Mi9zudkQtl4kZLR3WcVI21AlY4Okc90jM4YOx_4q9lCllNtDo5QLuuSN_Qvfo"/>
+</div>
+<h3 class="font-title-sm text-title-sm mb-1">حركة الصمت</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">تجريد معاصر</p>
+</div>
+<!-- Related Item 3 -->
+<div class="group cursor-pointer">
+<div class="aspect-[3/4] overflow-hidden bg-surface-container mb-6 relative">
+<img alt="Artwork 3" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="A sophisticated digital artwork showing geometric architectural details of a brutalist concrete building against a sharp blue sky. The composition is highly structured and minimalist, emphasizing lines, shadows, and clean forms. It reflects a modern editorial design style with high contrast and professional clarity. The mood is intellectual and precise, ideal for an office or modern study." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUrh8JJrFpbj3zHwMKvIvJzxzK7anepybYz_K4PbUFEqzcietchhxQnQ-c11B8X5dP4him9xLT1d9OYJogX9CzxBTauIQ4_TcIsuyusXVZP40zFZnjsRGw0CYS3ONW5Vek6-7vp6l2SLi7aIWtstjCSVe8VX46ewZc851FxcSulxwwIQVMqXo-6cFNqxK1xsa4F0q7dK99ge-VfKeO3fh8mqAF__hssc_d5-Ui1Yhh6MoK4ALDb-Tyq2tAfO4_JXHrxyi2G9E_s74"/>
+</div>
+<h3 class="font-title-sm text-title-sm mb-1">الزوايا الهندسية</h3>
+<p class="font-label-caps text-label-caps text-on-surface-variant">مجموعة العمارة</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-section-gap border-t border-outline-variant/20 bg-surface dark:bg-surface">
+<div class="flex flex-col md:flex-row justify-between items-center py-12 px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto gap-gutter">
+<div class="font-label-caps text-label-caps tracking-widest text-primary">ATELIER</div>
+<div class="flex gap-8">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">إنستغرام</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">القيمين الفنيين</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">الشروط</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-secondary transition-colors" href="#">الخصوصية</a>
+</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant opacity-60">
+                © ٢٠٢٤ ديجيتال أتيليه. جميع الحقوق محفوظة.
+            </div>
+</div>
+</footer>
+<script>
+        // Micro-interaction for back button
+        document.querySelector('button[onclick="window.history.back()"]').addEventListener('click', (e) => {
+            e.currentTarget.style.opacity = '0.5';
+        });
+
+        // Simple parallax effect for the hero image on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const heroImage = document.querySelector('section img');
+            if (heroImage) {
+                heroImage.style.transform = `translateY(${scrolled * 0.1}px)`;
+            }
+        });
+    </script>
+</body></html>
