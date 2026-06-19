@@ -5,6 +5,37 @@ import { useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 import type { Category } from "@/data/site";
 
+/**
+ * Resize + compress an image entirely in the browser (no server-side sharp,
+ * so it works on Cloudflare's edge). Returns a JPEG blob + its dimensions.
+ */
+async function compressImage(
+  file: File,
+  max = 1600,
+  quality = 0.82
+): Promise<{ blob: Blob; width: number; height: number }> {
+  const bitmap = await createImageBitmap(file, {
+    imageOrientation: "from-image",
+  });
+  const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
+  const width = Math.round(bitmap.width * scale);
+  const height = Math.round(bitmap.height * scale);
+
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) throw new Error("تعذّر معالجة الصورة");
+  ctx.drawImage(bitmap, 0, 0, width, height);
+  bitmap.close?.();
+
+  const blob = await new Promise<Blob | null>((resolve) =>
+    canvas.toBlob(resolve, "image/jpeg", quality)
+  );
+  if (!blob) throw new Error("تعذّر ضغط الصورة");
+  return { blob, width, height };
+}
+
 export default function ProductsManager({ categories }: { categories: Category[] }) {
   const router = useRouter();
   const [slug, setSlug] = useState(categories[0]?.slug ?? "");
@@ -29,11 +60,21 @@ export default function ProductsManager({ categories }: { categories: Category[]
     }
     setBusy(true);
     setMsg(null);
-    const fd = new FormData();
-    fd.append("slug", slug);
-    fd.append("title", title);
-    fd.append("file", file);
-    const res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+    let res: Response;
+    try {
+      const { blob, width, height } = await compressImage(file);
+      const fd = new FormData();
+      fd.append("slug", slug);
+      fd.append("title", title);
+      fd.append("width", String(width));
+      fd.append("height", String(height));
+      fd.append("file", blob, "upload.jpg");
+      res = await fetch("/api/admin/upload", { method: "POST", body: fd });
+    } catch (err: any) {
+      setBusy(false);
+      setMsg({ t: err?.message || "تعذّر معالجة الصورة", ok: false });
+      return;
+    }
     const j = await res.json().catch(() => ({}));
     setBusy(false);
     if (res.ok && j.ok) {

@@ -1,6 +1,9 @@
 export type Product = {
   title: string;
   image: string;
+  /** natural pixel size of the image — lets cards size to each image's shape */
+  width?: number;
+  height?: number;
 };
 
 export type Category = {

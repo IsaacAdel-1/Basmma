@@ -4,13 +4,48 @@
     "title": "تابلوهات صلوات",
     "blurb": "صلوات تملأ المكان سكينة وتفكّرك إن ربنا قريب في كل وقت.",
     "products": [
-      { "title": "صلاة السكينة", "image": "/products/prayers/prayers-1.jpg" },
-      { "title": "صلاة العام الجديد", "image": "/products/prayers/prayers-2.jpg" },
-      { "title": "صلاة قبل الأكل", "image": "/products/prayers/prayers-3.jpg" },
-      { "title": "صلاة قبل الامتحان", "image": "/products/prayers/prayers-4.jpg" },
-      { "title": "صلاة يعبيص", "image": "/products/prayers/prayers-5.jpg" },
-      { "title": "لك القوة", "image": "/products/prayers/prayers-6.jpg" },
-      { "title": "يا رب", "image": "/products/prayers/prayers-7.jpg" }
+      {
+        "title": "صلاة السكينة",
+        "image": "/products/prayers/prayers-1.jpg",
+        "width": 1135,
+        "height": 1600
+      },
+      {
+        "title": "صلاة العام الجديد",
+        "image": "/products/prayers/prayers-2.jpg",
+        "width": 1600,
+        "height": 1283
+      },
+      {
+        "title": "صلاة قبل الأكل",
+        "image": "/products/prayers/prayers-3.jpg",
+        "width": 1600,
+        "height": 1283
+      },
+      {
+        "title": "صلاة قبل الامتحان",
+        "image": "/products/prayers/prayers-4.jpg",
+        "width": 1600,
+        "height": 1053
+      },
+      {
+        "title": "صلاة يعبيص",
+        "image": "/products/prayers/prayers-5.jpg",
+        "width": 1205,
+        "height": 1600
+      },
+      {
+        "title": "لك القوة",
+        "image": "/products/prayers/prayers-6.jpg",
+        "width": 1283,
+        "height": 1600
+      },
+      {
+        "title": "يا رب",
+        "image": "/products/prayers/prayers-7.jpg",
+        "width": 1600,
+        "height": 1283
+      }
     ]
   },
   {
@@ -18,21 +53,96 @@
     "title": "تابلوهات آيات مسيحية",
     "blurb": "آيات بتلمس القلب، بتصميم وألوان راقية تليق بكلمة الكتاب.",
     "products": [
-      { "title": "أصحاح المحبة", "image": "/products/verses/verses-1.jpg" },
-      { "title": "خروجه يقين", "image": "/products/verses/verses-2.jpg" },
-      { "title": "دعوا الأولاد", "image": "/products/verses/verses-3.jpg" },
-      { "title": "راحمك الرب", "image": "/products/verses/verses-4.jpg" },
-      { "title": "عمله رهيب", "image": "/products/verses/verses-5.jpg" },
-      { "title": "كان لخيري", "image": "/products/verses/verses-6.jpg" },
-      { "title": "لأنك تنسى المشقة", "image": "/products/verses/verses-7.jpg" },
-      { "title": "يعطيك ما تحتاج", "image": "/products/verses/verses-8.jpg" },
-      { "title": "يعينها الله", "image": "/products/verses/verses-9.jpg" },
-      { "title": "يمنحك سلامًا", "image": "/products/verses/verses-10.jpg" },
-      { "title": "أب حقيقي", "image": "/products/verses/verses-11.jpg" },
-      { "title": "راعي صالح", "image": "/products/verses/verses-12.jpg" },
-      { "title": "The Lord", "image": "/products/verses/verses-13.jpg" },
-      { "title": "مع الله ممكن", "image": "/products/verses/verses-14.jpg" },
-      { "title": "يقيمني على مرتفعاتي", "image": "/products/verses/verses-15.jpg" }
+      {
+        "title": "أصحاح المحبة",
+        "image": "/products/verses/verses-1.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "خروجه يقين",
+        "image": "/products/verses/verses-2.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "دعوا الأولاد",
+        "image": "/products/verses/verses-3.jpg",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "title": "راحمك الرب",
+        "image": "/products/verses/verses-4.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "عمله رهيب",
+        "image": "/products/verses/verses-5.jpg",
+        "width": 1205,
+        "height": 1600
+      },
+      {
+        "title": "كان لخيري",
+        "image": "/products/verses/verses-6.jpg",
+        "width": 1600,
+        "height": 1283
+      },
+      {
+        "title": "لأنك تنسى المشقة",
+        "image": "/products/verses/verses-7.jpg",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "title": "يعطيك ما تحتاج",
+        "image": "/products/verses/verses-8.jpg",
+        "width": 1600,
+        "height": 1200
+      },
+      {
+        "title": "يعينها الله",
+        "image": "/products/verses/verses-9.jpg",
+        "width": 1600,
+        "height": 1205
+      },
+      {
+        "title": "يمنحك سلامًا",
+        "image": "/products/verses/verses-10.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "أب حقيقي",
+        "image": "/products/verses/verses-11.jpg",
+        "width": 1131,
+        "height": 1600
+      },
+      {
+        "title": "راعي صالح",
+        "image": "/products/verses/verses-12.jpg",
+        "width": 1131,
+        "height": 1600
+      },
+      {
+        "title": "The Lord",
+        "image": "/products/verses/verses-13.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "مع الله ممكن",
+        "image": "/products/verses/verses-14.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "يقيمني على مرتفعاتي",
+        "image": "/products/verses/verses-15.jpg",
+        "width": 1205,
+        "height": 1600
+      }
     ]
   },
   {
@@ -40,10 +150,30 @@
     "title": "تابلوهات للبنات",
     "blurb": "كلمات بتفكّر كل بنت إنها جميلة وقيّمة ومحبوبة.",
     "products": [
-      { "title": "أنتِ جميلة", "image": "/products/girls/girls-1.jpg" },
-      { "title": "تغني كأيام صباها", "image": "/products/girls/girls-2.jpg" },
-      { "title": "كلك جميل", "image": "/products/girls/girls-3.jpg" },
-      { "title": "كلك", "image": "/products/girls/girls-4.jpg" }
+      {
+        "title": "أنتِ جميلة",
+        "image": "/products/girls/girls-1.jpg",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "title": "تغني كأيام صباها",
+        "image": "/products/girls/girls-2.jpg",
+        "width": 1600,
+        "height": 1600
+      },
+      {
+        "title": "كلّك جميل",
+        "image": "/products/girls/girls-3.jpg",
+        "width": 1600,
+        "height": 1157
+      },
+      {
+        "title": "جميل يا حبيبتي",
+        "image": "/products/girls/girls-4.jpg",
+        "width": 1600,
+        "height": 1600
+      }
     ]
   },
   {
@@ -51,11 +181,36 @@
     "title": "تابلوهات لبيت جديد",
     "blurb": "هدية مثالية لبيت جديد، بتملأه بركة ودفا من أول يوم.",
     "products": [
-      { "title": "أعطيكم قلبًا واحدًا", "image": "/products/home/home-1.jpg" },
-      { "title": "بيوت صلاة", "image": "/products/home/home-2.jpg" },
-      { "title": "جسد واحد", "image": "/products/home/home-3.jpg" },
-      { "title": "على هذا البيت", "image": "/products/home/home-4.jpg" },
-      { "title": "عيناك مفتوحتين", "image": "/products/home/home-5.jpg" }
+      {
+        "title": "أعطيكم قلبًا واحدًا",
+        "image": "/products/home/home-1.jpg",
+        "width": 1205,
+        "height": 1600
+      },
+      {
+        "title": "بيوت صلاة",
+        "image": "/products/home/home-2.jpg",
+        "width": 1600,
+        "height": 1283
+      },
+      {
+        "title": "جسد واحد",
+        "image": "/products/home/home-3.jpg",
+        "width": 1283,
+        "height": 1600
+      },
+      {
+        "title": "على هذا البيت",
+        "image": "/products/home/home-4.jpg",
+        "width": 1090,
+        "height": 1600
+      },
+      {
+        "title": "عيناك مفتوحتين",
+        "image": "/products/home/home-5.jpg",
+        "width": 1600,
+        "height": 1075
+      }
     ]
   },
   {
@@ -63,10 +218,30 @@
     "title": "تابلوهات منوعة",
     "blurb": "كلمات ملهمة لكل المساحات والأذواق، تنشر طاقة إيجابية حواليك.",
     "products": [
-      { "title": "بالصبر تطرح ورد", "image": "/products/misc/misc-1.jpg" },
-      { "title": "جرّب كتير", "image": "/products/misc/misc-2.jpg" },
-      { "title": "عزيزي أنا", "image": "/products/misc/misc-3.jpg" },
-      { "title": "قهوة", "image": "/products/misc/misc-4.jpg" }
+      {
+        "title": "بالصبر تطرح ورد",
+        "image": "/products/misc/misc-1.jpg",
+        "width": 1283,
+        "height": 1600
+      },
+      {
+        "title": "جرّب كتير",
+        "image": "/products/misc/misc-2.jpg",
+        "width": 1200,
+        "height": 1600
+      },
+      {
+        "title": "عزيزي أنا",
+        "image": "/products/misc/misc-3.jpg",
+        "width": 1283,
+        "height": 1600
+      },
+      {
+        "title": "قهوة",
+        "image": "/products/misc/misc-4.jpg",
+        "width": 1067,
+        "height": 1600
+      }
     ]
   }
 ]

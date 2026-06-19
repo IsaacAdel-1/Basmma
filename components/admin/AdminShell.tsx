@@ -6,6 +6,9 @@ import { useState } from "react";
 import type { Category } from "@/data/site";
 import Analytics from "./Analytics";
 import ProductsManager from "./ProductsManager";
+import CategoriesManager from "./CategoriesManager";
+
+type TabKey = "analytics" | "products" | "categories";
 
 export default function AdminShell({
   categories,
@@ -15,7 +18,7 @@ export default function AdminShell({
   stats: React.ComponentProps<typeof Analytics>["stats"];
 }) {
   const router = useRouter();
-  const [tab, setTab] = useState<"analytics" | "products">("analytics");
+  const [tab, setTab] = useState<TabKey>("analytics");
 
   async function logout() {
     await fetch("/api/admin/logout", { method: "POST" });
@@ -49,10 +52,11 @@ export default function AdminShell({
           {[
             { k: "analytics", l: "📊 التحليلات والزوّار" },
             { k: "products", l: "🖼️ إدارة الصور" },
+            { k: "categories", l: "🗂️ الأقسام (التابات)" },
           ].map((t) => (
             <button
               key={t.k}
-              onClick={() => setTab(t.k as typeof tab)}
+              onClick={() => setTab(t.k as TabKey)}
               className={`rounded-full px-5 py-2.5 text-sm font-bold transition ${
                 tab === t.k ? "bg-gradient-to-br from-wine to-red-brand text-white" : "text-ink-2 hover:text-wine"
               }`}
@@ -62,11 +66,9 @@ export default function AdminShell({
           ))}
         </div>
 
-        {tab === "analytics" ? (
-          <Analytics stats={stats} />
-        ) : (
-          <ProductsManager categories={categories} />
-        )}
+        {tab === "analytics" && <Analytics stats={stats} />}
+        {tab === "products" && <ProductsManager categories={categories} />}
+        {tab === "categories" && <CategoriesManager categories={categories} />}
       </div>
     </div>
   );

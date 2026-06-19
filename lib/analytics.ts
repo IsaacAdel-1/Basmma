@@ -1,14 +1,11 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
 import crypto from "crypto";
+import { supabaseAdmin } from "./supabase";
 
-const FILE = path.join(process.cwd(), "data", "analytics.json");
-const MAX_EVENTS = 5000; // keep the log bounded
+const MAX_EVENTS = 5000; // how many recent visits to pull for the stats
 
 export type Visit = {
-  id: string;
-  time: number; // epoch ms
+  time: number; // epoch ms (derived from the `ts` column)
   visitor: string; // hashed ip+ua (anonymous unique id)
   device: "موبايل" | "تابلت" | "لابتوب / كمبيوتر";
   os: string;
@@ -47,11 +44,26 @@ export function parseUA(ua: string) {
 }
 
 async function readAll(): Promise<Visit[]> {
-  try {
-    return JSON.parse(await fs.readFile(FILE, "utf-8")) as Visit[];
-  } catch {
-    return [];
-  }
+  const { data, error } = await supabaseAdmin
+    .from("visits")
+    .select("ts,visitor,device,os,browser,path,referrer,country,city")
+    .order("ts", { ascending: false })
+    .limit(MAX_EVENTS);
+  if (error || !data) return [];
+  // map to the internal shape (epoch ms) and return in chronological order
+  return data
+    .map((r) => ({
+      time: new Date(r.ts as string).getTime(),
+      visitor: r.visitor,
+      device: r.device,
+      os: r.os,
+      browser: r.browser,
+      path: r.path,
+      referrer: r.referrer,
+      country: r.country,
+      city: r.city,
+    }))
+    .reverse() as Visit[];
 }
 
 async function geoLookup(ip: string): Promise<{ country: string; city: string }> {
@@ -94,9 +106,7 @@ export async function recordVisit(input: {
     .digest("hex")
     .slice(0, 16);
 
-  const visit: Visit = {
-    id: crypto.randomUUID(),
-    time: Date.now(),
+  await supabaseAdmin.from("visits").insert({
     visitor,
     device,
     os,
@@ -105,12 +115,7 @@ export async function recordVisit(input: {
     referrer: input.referrer || "مباشر",
     country: geo.country,
     city: geo.city,
-  };
-
-  const all = await readAll();
-  all.push(visit);
-  const trimmed = all.slice(-MAX_EVENTS);
-  await fs.writeFile(FILE, JSON.stringify(trimmed), "utf-8");
+  });
 }
 
 function countBy<T extends string>(rows: Visit[], key: keyof Visit) {
@@ -124,6 +129,14 @@ function countBy<T extends string>(rows: Visit[], key: keyof Visit) {
     .sort((a, b) => b.value - a.value);
 }
 
+/** turn a raw url path into a friendly Arabic page name */
+function pageName(p: string) {
+  const clean = (p || "/").split("?")[0].split("#")[0];
+  if (clean === "/" || clean === "") return "الصفحة الرئيسية";
+  if (clean.startsWith("/admin")) return "لوحة التحكم";
+  return clean;
+}
+
 export async function getStats() {
   const all = await readAll();
   const now = Date.now();
@@ -134,6 +147,10 @@ export async function getStats() {
   const uniqueVisitors = new Set(all.map((v) => v.visitor)).size;
   const today = all.filter((v) => v.time >= startOfDay.getTime());
   const last7 = all.filter((v) => v.time >= now - 7 * dayMs);
+  // "online now" = distinct visitors seen in the last 5 minutes
+  const onlineNow = new Set(
+    all.filter((v) => v.time >= now - 5 * 60000).map((v) => v.visitor)
+  ).size;
 
   // visits per day for the last 7 days
   const perDay: { label: string; value: number }[] = [];
@@ -148,15 +165,45 @@ export async function getStats() {
     });
   }
 
+  // top pages (friendly names)
+  const byPath = countBy(
+    all.map((v) => ({ ...v, path: pageName(v.path) })) as Visit[],
+    "path"
+  ).slice(0, 8);
+
+  // top cities (skip unknowns)
+  const byCity = countBy(
+    all.filter((v) => v.city && v.city !== "—") as Visit[],
+    "city"
+  ).slice(0, 8);
+
+  // traffic sources — show the referrer's domain only
+  const sources = all.map((v) => {
+    let r = v.referrer || "مباشر";
+    if (r === "مباشر" || r === "") r = "مباشر (بدون مصدر)";
+    else
+      try {
+        r = new URL(r).hostname.replace(/^www\./, "");
+      } catch {
+        /* keep as-is */
+      }
+    return { ...v, referrer: r } as Visit;
+  });
+  const byReferrer = countBy(sources, "referrer").slice(0, 8);
+
   return {
     totalVisits: all.length,
     uniqueVisitors,
     todayVisits: today.length,
     last7Visits: last7.length,
+    onlineNow,
     byDevice: countBy(all, "device"),
     byOS: countBy(all, "os"),
     byBrowser: countBy(all, "browser"),
     byCountry: countBy(all, "country").slice(0, 8),
+    byCity,
+    byPath,
+    byReferrer,
     perDay,
     recent: [...all]
       .reverse()
@@ -168,6 +215,7 @@ export async function getStats() {
         browser: v.browser,
         country: v.country,
         city: v.city,
+        path: pageName(v.path),
         referrer: v.referrer,
       })),
   };

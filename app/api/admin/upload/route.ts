@@ -13,19 +13,20 @@ export async function POST(req: NextRequest) {
     const form = await req.formData();
     const slug = String(form.get("slug") || "");
     const title = String(form.get("title") || "");
+    const width = Number(form.get("width")) || undefined;
+    const height = Number(form.get("height")) || undefined;
     const file = form.get("file");
 
     if (!(file instanceof File))
       return NextResponse.json({ ok: false, error: "لم يتم اختيار صورة" }, { status: 400 });
 
-    if (!file.type.startsWith("image/"))
-      return NextResponse.json({ ok: false, error: "الملف لازم يكون صورة" }, { status: 400 });
-
+    // image is already compressed in the browser; just sanity-check size
     if (file.size > 8 * 1024 * 1024)
-      return NextResponse.json({ ok: false, error: "أقصى حجم 8 ميجا" }, { status: 400 });
+      return NextResponse.json({ ok: false, error: "الصورة كبيرة جداً" }, { status: 400 });
 
-    const buffer = Buffer.from(await file.arrayBuffer());
-    const { image } = await addProduct(slug, title, file.name, buffer);
+    const bytes = await file.arrayBuffer();
+    const contentType = file.type || "image/jpeg";
+    const { image } = await addProduct(slug, title, bytes, contentType, width, height);
     return NextResponse.json({ ok: true, image });
   } catch (e: any) {
     return NextResponse.json(

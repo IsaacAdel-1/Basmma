@@ -28,6 +28,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // lock page scroll while the mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <>
       <div
@@ -103,31 +111,43 @@ export default function Navbar() {
         </div>
       </header>
 
-      {/* mobile menu */}
+      {/* mobile menu overlay */}
       <div
-        className={`fixed inset-y-0 left-0 right-[32%] z-[90] flex flex-col items-center justify-center gap-5 bg-white/97 shadow-soft backdrop-blur-lg transition-transform duration-500 md:hidden ${
-          open ? "translate-x-0" : "translate-x-full"
+        className={`fixed inset-0 z-[90] md:hidden transition-opacity duration-300 ${
+          open ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
-        {links.map((l) => (
-          <a
-            key={l.href}
-            href={l.href}
-            onClick={() => setOpen(false)}
-            className="text-[1.15rem] font-medium text-ink-2"
-          >
-            {l.label}
-          </a>
-        ))}
-        <a
-          href={waLink()}
-          target="_blank"
-          rel="noopener"
+        {/* backdrop — tap to close */}
+        <div
           onClick={() => setOpen(false)}
-          className="rounded-full border-[1.5px] border-wine px-7 py-3 font-bold text-wine"
+          className="absolute inset-0 bg-ink/40 backdrop-blur-sm"
+        />
+        {/* drawer (slides in from the right) */}
+        <div
+          className={`absolute inset-y-0 right-0 flex w-[78%] max-w-[320px] flex-col items-center justify-center gap-6 bg-white shadow-soft transition-transform duration-300 ${
+            open ? "translate-x-0" : "translate-x-full"
+          }`}
         >
-          تواصل معنا
-        </a>
+          {links.map((l) => (
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="text-[1.15rem] font-medium text-ink-2 transition-colors hover:text-wine"
+            >
+              {l.label}
+            </a>
+          ))}
+          <a
+            href={waLink()}
+            target="_blank"
+            rel="noopener"
+            onClick={() => setOpen(false)}
+            className="rounded-full border-[1.5px] border-wine px-7 py-3 font-bold text-wine"
+          >
+            تواصل معنا
+          </a>
+        </div>
       </div>
     </>
   );

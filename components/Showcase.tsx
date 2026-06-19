@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { waLink, type Product, type Category } from "@/data/site";
 import Reveal from "./Reveal";
@@ -26,6 +26,39 @@ export default function Showcase({ categories }: { categories: Category[] }) {
   const filtered =
     active === "all" ? allProducts : allProducts.filter((p) => p.cat === active);
   const shown = filtered.slice(0, limit);
+
+  // column count derived from the actual container width (not fixed
+  // breakpoints) so 3 columns show whenever there's room for them.
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const [cols, setCols] = useState(3);
+  useEffect(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      const w = el.clientWidth;
+      setCols(Math.min(3, Math.max(1, Math.floor(w / 250))));
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // masonry distribution: drop each card into the currently shortest column
+  // (column height estimated from each image's aspect ratio + caption). This
+  // keeps the columns balanced so nothing dangles alone at the bottom, while
+  // ties prefer the rightmost column to keep the right-to-left reading flow.
+  const columns = useMemo(() => {
+    const buckets: Flat[][] = Array.from({ length: cols }, () => []);
+    const heights = new Array(cols).fill(0);
+    for (const p of shown) {
+      const ratio = p.width && p.height ? p.height / p.width : 1.25;
+      let target = 0;
+      for (let i = 1; i < cols; i++)
+        if (heights[i] < heights[target]) target = i;
+      buckets[target].push(p);
+      heights[target] += ratio + 0.5; // +0.5 ≈ caption height
+    }
+    return buckets;
+  }, [shown, cols]);
 
   const chips = [{ slug: "all", title: "الكل" }, ...categories];
   const activeTitle =
@@ -80,44 +113,43 @@ export default function Showcase({ categories }: { categories: Category[] }) {
             <span className="font-bold text-wine">{filtered.length}</span> تصميم
           </p>
 
-          {/* cards grid */}
-          <motion.div
-            layout
-            className="mt-8 grid grid-cols-2 gap-4 sm:gap-5 md:grid-cols-3 lg:grid-cols-4"
-          >
-            <AnimatePresence mode="popLayout">
-              {shown.map((p) => (
-                <motion.figure
-                  key={p.image}
-                  layout
-                  initial={{ opacity: 0, scale: 0.94 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.94 }}
-                  transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  onClick={() => setLightbox(p)}
-                  className="group cursor-pointer overflow-hidden rounded-xl2 border border-line bg-cream-2 p-3.5 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover"
-                >
-                  <div className="relative aspect-[3/4] w-full overflow-hidden rounded-xl bg-white">
-                    <Image
-                      src={p.image}
-                      alt={p.title}
-                      fill
-                      sizes="(max-width:640px) 50vw, (max-width:1024px) 33vw, 280px"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <figcaption className="px-1 pt-3.5 text-right">
-                    <h4 className="font-display text-[1.05rem] font-bold text-ink">
-                      {p.title}
-                    </h4>
-                    <span className="mt-0.5 block text-[.8rem] text-gray-brand">
-                      {shortCat(p.catTitle)}
-                    </span>
-                  </figcaption>
-                </motion.figure>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+          {/* cards — masonry: each column stacks tight to its images, so the
+              image box matches the image's real size (no padding, no gaps) */}
+          <div ref={wrapRef} className="mt-8 flex items-start gap-5 sm:gap-6">
+            {columns.map((col, ci) => (
+              <div key={ci} className="flex flex-1 flex-col gap-5 sm:gap-6">
+                {col.map((p) => (
+                  <motion.figure
+                    key={p.image}
+                    initial={{ opacity: 0, scale: 0.94 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                    onClick={() => setLightbox(p)}
+                    className="group cursor-pointer overflow-hidden rounded-xl2 border border-line bg-cream-2 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:shadow-card-hover"
+                  >
+                    <div className="overflow-hidden">
+                      <Image
+                        src={p.image}
+                        alt={p.title}
+                        width={p.width ?? 800}
+                        height={p.height ?? 1000}
+                        sizes="(max-width:640px) 100vw, (max-width:1024px) 50vw, 420px"
+                        className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <figcaption className="px-4 py-4 text-right">
+                      <h4 className="font-display text-[1.05rem] font-bold text-ink">
+                        {p.title}
+                      </h4>
+                      <span className="mt-0.5 block text-[.8rem] text-gray-brand">
+                        {shortCat(p.catTitle)}
+                      </span>
+                    </figcaption>
+                  </motion.figure>
+                ))}
+              </div>
+            ))}
+          </div>
 
           {/* show more */}
           {limit < filtered.length && (

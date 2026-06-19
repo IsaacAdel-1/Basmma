@@ -4,10 +4,14 @@ type Stats = {
   uniqueVisitors: number;
   todayVisits: number;
   last7Visits: number;
+  onlineNow: number;
   byDevice: Row[];
   byOS: Row[];
   byBrowser: Row[];
   byCountry: Row[];
+  byCity: Row[];
+  byPath: Row[];
+  byReferrer: Row[];
   perDay: Row[];
   recent: {
     time: number;
@@ -16,6 +20,7 @@ type Stats = {
     browser: string;
     country: string;
     city: string;
+    path: string;
     referrer: string;
   }[];
 };
@@ -65,6 +70,18 @@ export default function Analytics({ stats }: { stats: Stats }) {
   const maxDay = Math.max(1, ...stats.perDay.map((d) => d.value));
   return (
     <div className="grid gap-6">
+      {/* live banner */}
+      <div className="flex items-center gap-2.5 rounded-xl2 border border-line bg-white px-5 py-3">
+        <span className="relative flex h-3 w-3">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-75" />
+          <span className="relative inline-flex h-3 w-3 rounded-full bg-green-500" />
+        </span>
+        <span className="text-sm font-bold text-ink">
+          {stats.onlineNow.toLocaleString("ar-EG")} زائر متصل دلوقتي
+        </span>
+        <span className="text-xs text-gray-brand">(آخر ٥ دقايق)</span>
+      </div>
+
       <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         <Stat n={stats.totalVisits} l="إجمالي الزيارات" accent />
         <Stat n={stats.uniqueVisitors} l="زوّار مختلفون" />
@@ -93,7 +110,13 @@ export default function Analytics({ stats }: { stats: Stats }) {
         <Bars title="نوع الجهاز" rows={stats.byDevice} />
         <Bars title="نظام التشغيل" rows={stats.byOS} />
         <Bars title="المتصفح" rows={stats.byBrowser} />
-        <Bars title="الدولة" rows={stats.byCountry} />
+        <Bars title="🌍 الدولة" rows={stats.byCountry} />
+      </div>
+
+      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+        <Bars title="🏙️ أكثر المدن" rows={stats.byCity} />
+        <Bars title="📄 أكثر الصفحات زيارة" rows={stats.byPath} />
+        <Bars title="🔗 مصادر الزيارات" rows={stats.byReferrer} />
       </div>
 
       {/* recent visits */}
@@ -108,13 +131,14 @@ export default function Analytics({ stats }: { stats: Stats }) {
                 <th className="p-3 font-bold">النظام</th>
                 <th className="p-3 font-bold">المتصفح</th>
                 <th className="p-3 font-bold">المكان</th>
+                <th className="p-3 font-bold">الصفحة</th>
                 <th className="p-3 font-bold">المصدر</th>
               </tr>
             </thead>
             <tbody>
               {stats.recent.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="p-6 text-center text-gray-brand">
+                  <td colSpan={7} className="p-6 text-center text-gray-brand">
                     لسه مفيش زيارات مسجّلة.
                   </td>
                 </tr>
@@ -133,6 +157,7 @@ export default function Analytics({ stats }: { stats: Stats }) {
                   <td className="p-3">{r.os}</td>
                   <td className="p-3">{r.browser}</td>
                   <td className="p-3">{r.city !== "—" ? `${r.city}، ${r.country}` : r.country}</td>
+                  <td className="p-3 text-ink-2">{r.path}</td>
                   <td className="p-3 text-gray-brand">{r.referrer}</td>
                 </tr>
               ))}

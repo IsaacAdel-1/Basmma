@@ -1,75 +1,175 @@
 import "server-only";
-import { promises as fs } from "fs";
-import path from "path";
-import sharp from "sharp";
+import { supabaseAdmin, STORAGE_BUCKET, objectKeyFromUrl } from "./supabase";
 import type { Category } from "@/data/site";
 
-const DATA_FILE = path.join(process.cwd(), "data", "products.json");
-const PUBLIC_DIR = path.join(process.cwd(), "public");
-
+/** Read all categories with their products, grouped & ordered. */
 export async function getCategories(): Promise<Category[]> {
-  const raw = await fs.readFile(DATA_FILE, "utf-8");
-  return JSON.parse(raw) as Category[];
+  const [{ data: cats, error: ce }, { data: prods, error: pe }] = await Promise.all([
+    supabaseAdmin
+      .from("categories")
+      .select("slug,title,blurb,position,created_at")
+      .order("position", { ascending: true })
+      .order("created_at", { ascending: true }),
+    supabaseAdmin
+      .from("products")
+      .select("category_slug,title,image_url,width,height,position,created_at")
+      .order("position", { ascending: true })
+      .order("created_at", { ascending: true }),
+  ]);
+  if (ce) throw new Error(ce.message);
+  if (pe) throw new Error(pe.message);
+
+  return (cats || []).map((c) => ({
+    slug: c.slug,
+    title: c.title,
+    blurb: c.blurb || "",
+    products: (prods || [])
+      .filter((p) => p.category_slug === c.slug)
+      .map((p) => ({
+        title: p.title,
+        image: p.image_url,
+        width: p.width ?? undefined,
+        height: p.height ?? undefined,
+      })),
+  }));
 }
 
-async function saveCategories(cats: Category[]) {
-  await fs.writeFile(DATA_FILE, JSON.stringify(cats, null, 2), "utf-8");
+/* ----------------------------- categories ----------------------------- */
+
+export async function addCategory(title: string, blurb: string) {
+  const t = title?.trim();
+  if (!t) throw new Error("اكتب اسم القسم");
+
+  const { data: dup } = await supabaseAdmin
+    .from("categories")
+    .select("slug")
+    .eq("title", t)
+    .maybeSingle();
+  if (dup) throw new Error("فيه قسم بنفس الاسم بالفعل");
+
+  const { data: top } = await supabaseAdmin
+    .from("categories")
+    .select("position")
+    .order("position", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const slug = `cat-${Date.now().toString(36)}`;
+  const { error } = await supabaseAdmin.from("categories").insert({
+    slug,
+    title: t,
+    blurb: blurb?.trim() || "",
+    position: (top?.position ?? 0) + 1,
+  });
+  if (error) throw new Error(error.message);
+  return { slug };
 }
 
-export async function totals() {
-  const cats = await getCategories();
-  return {
-    products: cats.reduce((n, c) => n + c.products.length, 0),
-    categories: cats.length,
-  };
+export async function updateCategory(slug: string, title: string, blurb: string) {
+  const t = title?.trim();
+  if (!t) throw new Error("اكتب اسم القسم");
+
+  const { data: dup } = await supabaseAdmin
+    .from("categories")
+    .select("slug")
+    .eq("title", t)
+    .neq("slug", slug)
+    .maybeSingle();
+  if (dup) throw new Error("فيه قسم بنفس الاسم بالفعل");
+
+  const { data: updated, error } = await supabaseAdmin
+    .from("categories")
+    .update({ title: t, blurb: blurb?.trim() || "" })
+    .eq("slug", slug)
+    .select("slug")
+    .maybeSingle();
+  if (error) throw new Error(error.message);
+  if (!updated) throw new Error("القسم غير موجود");
 }
 
-/** Save an uploaded image into /public/products/<slug>/ and register it. */
+export async function deleteCategory(slug: string) {
+  // remove every image of this category from storage first
+  const { data: prods } = await supabaseAdmin
+    .from("products")
+    .select("image_url")
+    .eq("category_slug", slug);
+
+  const keys = (prods || [])
+    .map((p) => objectKeyFromUrl(p.image_url))
+    .filter((k): k is string => !!k);
+  if (keys.length) await supabaseAdmin.storage.from(STORAGE_BUCKET).remove(keys);
+
+  // deleting the category cascades to its product rows (FK ON DELETE CASCADE)
+  const { error } = await supabaseAdmin.from("categories").delete().eq("slug", slug);
+  if (error) throw new Error(error.message);
+}
+
+/* ------------------------------ products ------------------------------ */
+
+/**
+ * Store an already-compressed image (done in the browser) into Supabase
+ * Storage and register the product row. `bytes` is the raw image data.
+ */
 export async function addProduct(
   slug: string,
   title: string,
-  fileName: string,
-  buffer: Buffer
+  bytes: ArrayBuffer | Buffer,
+  contentType: string,
+  width?: number,
+  height?: number
 ) {
-  const cats = await getCategories();
-  const cat = cats.find((c) => c.slug === slug);
+  const { data: cat } = await supabaseAdmin
+    .from("categories")
+    .select("slug")
+    .eq("slug", slug)
+    .maybeSingle();
   if (!cat) throw new Error("القسم غير موجود");
 
-  // Always optimize uploads for the web (max 1600px, progressive JPEG) so big
-  // camera photos never bloat the site or crash image optimization.
-  const optimized = await sharp(buffer, { failOn: "none" })
-    .rotate()
-    .resize({ width: 1600, height: 1600, fit: "inside", withoutEnlargement: true })
-    .jpeg({ quality: 82, mozjpeg: true, progressive: true })
-    .toBuffer();
+  const ext = contentType.includes("png") ? "png" : "jpg";
+  const key = `${slug}/${slug}-${Date.now()}-${Math.floor(
+    Math.random() * 9000 + 1000
+  )}.${ext}`;
 
-  const unique = `${slug}-${Date.now()}-${Math.floor(
-    (buffer.length % 9000) + 1000
-  )}.jpg`;
+  const { error: ue } = await supabaseAdmin.storage
+    .from(STORAGE_BUCKET)
+    .upload(key, bytes, { contentType, upsert: false });
+  if (ue) throw new Error(ue.message);
 
-  const dir = path.join(PUBLIC_DIR, "products", slug);
-  await fs.mkdir(dir, { recursive: true });
-  await fs.writeFile(path.join(dir, unique), optimized);
+  const { data: pub } = supabaseAdmin.storage.from(STORAGE_BUCKET).getPublicUrl(key);
+  const image_url = pub.publicUrl;
 
-  const image = `/products/${slug}/${unique}`;
-  cat.products.push({ title: title?.trim() || "تابلوه جديد", image });
-  await saveCategories(cats);
-  return { image };
+  const { data: top } = await supabaseAdmin
+    .from("products")
+    .select("position")
+    .eq("category_slug", slug)
+    .order("position", { ascending: false })
+    .limit(1)
+    .maybeSingle();
+
+  const { error } = await supabaseAdmin.from("products").insert({
+    category_slug: slug,
+    title: title?.trim() || "تابلوه جديد",
+    image_url,
+    width,
+    height,
+    position: (top?.position ?? 0) + 1,
+  });
+  if (error) {
+    // roll back the uploaded file if the row insert failed
+    await supabaseAdmin.storage.from(STORAGE_BUCKET).remove([key]);
+    throw new Error(error.message);
+  }
+  return { image: image_url };
 }
 
-/** Remove a product from JSON and delete its image file. */
 export async function deleteProduct(slug: string, image: string) {
-  const cats = await getCategories();
-  const cat = cats.find((c) => c.slug === slug);
-  if (!cat) throw new Error("القسم غير موجود");
+  const { error } = await supabaseAdmin
+    .from("products")
+    .delete()
+    .eq("category_slug", slug)
+    .eq("image_url", image);
+  if (error) throw new Error(error.message);
 
-  cat.products = cat.products.filter((p) => p.image !== image);
-  await saveCategories(cats);
-
-  // delete the physical file (ignore if missing); guard against path escapes
-  const rel = image.replace(/^\/+/, "");
-  const abs = path.join(PUBLIC_DIR, rel);
-  if (abs.startsWith(PUBLIC_DIR + path.sep)) {
-    await fs.unlink(abs).catch(() => {});
-  }
+  const key = objectKeyFromUrl(image);
+  if (key) await supabaseAdmin.storage.from(STORAGE_BUCKET).remove([key]);
 }
