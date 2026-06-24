@@ -35,6 +35,14 @@ export default function Footer({ categories }: { categories: Category[] }) {
                   واتساب <span aria-hidden>←</span>
                 </a>
                 <a
+                  href={site.instagram}
+                  target="_blank"
+                  rel="noopener"
+                  className="rounded-full border-[1.5px] border-white/45 px-9 py-3.5 font-bold text-white transition-all hover:bg-white hover:text-wine"
+                >
+                  إنستجرام
+                </a>
+                <a
                   href={site.facebook}
                   target="_blank"
                   rel="noopener"
@@ -61,6 +69,19 @@ export default function Footer({ categories }: { categories: Category[] }) {
               {site.mission}
             </p>
             <div className="flex gap-3">
+              <a
+                href={site.instagram}
+                target="_blank"
+                rel="noopener"
+                aria-label="Instagram"
+                className="grid h-11 w-11 place-items-center rounded-full border border-line bg-white text-ink-2 transition-all hover:border-wine hover:bg-wine hover:text-white"
+              >
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="3" width="18" height="18" rx="5" />
+                  <circle cx="12" cy="12" r="3.6" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              </a>
               <a
                 href={site.facebook}
                 target="_blank"
@@ -103,14 +124,6 @@ export default function Footer({ categories }: { categories: Category[] }) {
                   المقاسات والطلب
                 </a>
               </li>
-              <li>
-                <a
-                  href="#reviews"
-                  className="text-[.95rem] text-gray-brand transition-all hover:pr-1 hover:text-wine"
-                >
-                  آراء العملاء
-                </a>
-              </li>
             </ul>
           </div>
 
@@ -132,6 +145,18 @@ export default function Footer({ categories }: { categories: Category[] }) {
                 </a>
               </li>
               <li className="flex flex-col">
+                <span className="text-[.78rem] font-bold text-red-brand">إنستجرام</span>
+                <a
+                  href={site.instagram}
+                  target="_blank"
+                  rel="noopener"
+                  dir="ltr"
+                  className="self-start font-medium text-ink"
+                >
+                  @marina.moner.9
+                </a>
+              </li>
+              <li className="flex flex-col">
                 <span className="text-[.78rem] font-bold text-red-brand">فيسبوك</span>
                 <a
                   href={site.facebook}
@@ -144,7 +169,7 @@ export default function Footer({ categories }: { categories: Category[] }) {
               </li>
               <li className="flex flex-col">
                 <span className="text-[.78rem] font-bold text-red-brand">الطلب</span>
-                <span className="font-medium text-ink">أونلاين — لكل المحافظات</span>
+                <span className="font-medium text-ink">أونلاين — أسيوط</span>
               </li>
             </ul>
           </div>

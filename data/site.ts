@@ -4,6 +4,10 @@ export type Product = {
   /** natural pixel size of the image — lets cards size to each image's shape */
   width?: number;
   height?: number;
+  /** how many visitors hearted this tableau */
+  likes?: number;
+  /** did the current visitor (by IP) already heart it? */
+  liked?: boolean;
 };
 
 export type Category = {
@@ -23,6 +27,7 @@ export const site = {
   whatsapp: "201012756820",
   whatsappDisplay: "0101 275 6820",
   facebook: "https://www.facebook.com/marinamonerfortablo",
+  instagram: "https://www.instagram.com/marina.moner.9/",
   sizes: ["10×15", "15×20", "20×30", "30×40", "40×50", "50×60", "50×70"],
 };
 

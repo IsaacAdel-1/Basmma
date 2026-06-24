@@ -5,6 +5,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { waLink, type Product, type Category } from "@/data/site";
 import Reveal from "./Reveal";
+import HeartReact from "./HeartReact";
 
 type Flat = Product & { cat: string; catTitle: string };
 
@@ -144,6 +145,11 @@ export default function Showcase({ categories }: { categories: Category[] }) {
                       <span className="mt-0.5 block text-[.8rem] text-gray-brand">
                         {shortCat(p.catTitle)}
                       </span>
+                      <HeartReact
+                        productKey={p.image}
+                        likes={p.likes ?? 0}
+                        initialLiked={p.liked ?? false}
+                      />
                     </figcaption>
                   </motion.figure>
                 ))}

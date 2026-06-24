@@ -8,7 +8,6 @@ const links = [
   { href: "#hero", label: "الرئيسية" },
   { href: "#collections", label: "الأقسام" },
   { href: "#sizes", label: "المقاسات والطلب" },
-  { href: "#reviews", label: "آراء العملاء" },
 ];
 
 export default function Navbar() {

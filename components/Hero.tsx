@@ -14,24 +14,26 @@ export default function Hero({
   return (
     <section
       id="hero"
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden text-center"
+      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-cream text-center"
       style={{ padding: "150px clamp(20px,5vw,48px) 90px" }}
     >
-      {/* ===== Background image + overlay ===== */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="/hero-bg.png"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
-        {/* light wash so the maroon text stays readable while the image shows through */}
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.72),rgba(245,243,244,.66)_50%,rgba(255,255,255,.85))]" />
+      {/* ===== Background: clean top, photo only in the lower part ===== */}
+      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         {/* soft color glows */}
-        <span className="absolute -left-24 -top-28 h-[460px] w-[460px] animate-drift rounded-full bg-[radial-gradient(circle,rgba(192,21,43,.18),transparent_70%)] blur-[60px]" />
-        <span className="absolute -bottom-32 -right-28 h-[440px] w-[440px] animate-drift-slow rounded-full bg-[radial-gradient(circle,rgba(138,21,56,.16),transparent_70%)] blur-[60px]" />
+        <span className="absolute -left-24 -top-28 h-[460px] w-[460px] animate-drift rounded-full bg-[radial-gradient(circle,rgba(192,21,43,.12),transparent_70%)] blur-[60px]" />
+        <span className="absolute -bottom-32 -right-28 h-[440px] w-[440px] animate-drift-slow rounded-full bg-[radial-gradient(circle,rgba(138,21,56,.12),transparent_70%)] blur-[60px]" />
+        {/* the photo sits in the bottom band and fades up into the clean background */}
+        <div className="absolute inset-x-0 bottom-0 h-[50%]">
+          <Image
+            src="/hero-bg.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-bottom"
+          />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,#f5f3f4_0%,rgba(245,243,244,.80)_30%,rgba(245,243,244,.32)_100%)]" />
+        </div>
       </div>
 
       <motion.div
@@ -40,17 +42,21 @@ export default function Hero({
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       >
-        <span className="inline-flex items-center gap-2.5 text-[.85rem] font-bold uppercase tracking-[5px] text-red-brand">
+        <span className="inline-flex items-center justify-center gap-2.5 text-[.85rem] font-bold uppercase text-red-brand">
           <i className="h-1.5 w-1.5 animate-pulseDot rounded-full bg-red-brand" />
-          Handmade with love
+          {/* text-indent offsets the trailing letter-spacing so the words sit dead-center */}
+          <span className="inline-block tracking-[5px] [text-indent:5px]">
+            Handmade with love
+          </span>
+          <i className="h-1.5 w-1.5 animate-pulseDot rounded-full bg-red-brand" />
         </span>
 
-        <div className="mx-auto mt-5 w-[min(420px,72vw)]">
+        <div className="mx-auto mt-3 w-[min(360px,72vw)] -translate-x-[4%]">
           <Image
-            src="/brand-wordmark.png"
+            src="/logo-hero.png"
             alt={site.brand}
-            width={1780}
-            height={651}
+            width={1833}
+            height={912}
             priority
             className="h-auto w-full"
           />
@@ -63,11 +69,11 @@ export default function Hero({
           جدرانك هي <span className="text-wine">معرض حياتك</span>
         </h1>
 
-        <p className="mx-auto mt-5 max-w-[620px] text-[1.08rem] leading-[1.95] text-gray-brand">
+        <p className="mx-auto mt-5 max-w-[640px] text-[1.35rem] font-bold leading-[1.9] text-ink">
           لا تدع مساحاتك صامتة. اجعل كل زاوية، وكل مرحلة وكل ذكرى تروي فصلاً من
           قصتك الكاملة.
         </p>
-        <p className="mx-auto mt-3 max-w-[600px] text-[1.05rem] font-medium leading-[1.9] text-ink-2">
+        <p className="mx-auto mt-3 max-w-[600px] text-[.98rem] leading-[1.9] text-gray-brand">
           بصماية ليست مجرد تابلوهات، بل رسائل تستحق أن تبقى حاضرة في يومك.
         </p>
 
@@ -96,7 +102,7 @@ export default function Hero({
               <b className="block font-display text-[2.2rem] font-extrabold leading-none text-wine">
                 {s.n}
               </b>
-              <span className="text-[.88rem] text-gray-brand">{s.l}</span>
+              <span className="text-[1.25rem] font-bold text-black">{s.l}</span>
             </div>
           ))}
         </div>
