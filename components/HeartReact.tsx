@@ -19,10 +19,12 @@ export default function HeartReact({
   productKey,
   likes,
   initialLiked = false,
+  className = "mt-2.5",
 }: {
   productKey: string;
   likes: number;
   initialLiked?: boolean;
+  className?: string;
 }) {
   const [count, setCount] = useState(likes);
   // source of truth = the server (by IP); keeps the heart red on reload
@@ -76,7 +78,7 @@ export default function HeartReact({
       onClick={toggle}
       aria-pressed={liked}
       aria-label="أعجبني"
-      className={`group/heart mt-2.5 inline-flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors duration-300 ${
+      className={`group/heart ${className} inline-flex items-center gap-2 rounded-full border px-3 py-1.5 transition-colors duration-300 ${
         liked
           ? "border-wine/30 bg-wine/10"
           : "border-line bg-white hover:border-wine/40 hover:bg-wine/[.04]"

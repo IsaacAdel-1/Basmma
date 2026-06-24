@@ -138,17 +138,20 @@ export default function Showcase({ categories }: { categories: Category[] }) {
                         className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
                       />
                     </div>
-                    <figcaption className="px-4 py-4 text-right">
-                      <h4 className="font-display text-[1.05rem] font-bold text-ink">
-                        {p.title}
-                      </h4>
-                      <span className="mt-0.5 block text-[.8rem] text-gray-brand">
-                        {shortCat(p.catTitle)}
-                      </span>
+                    <figcaption className="flex items-start justify-between gap-3 px-4 py-3.5 text-right">
+                      <div className="min-w-0">
+                        <h4 className="font-display text-[1.05rem] font-bold text-ink">
+                          {p.title}
+                        </h4>
+                        <span className="mt-0.5 block text-[.8rem] text-gray-brand">
+                          {shortCat(p.catTitle)}
+                        </span>
+                      </div>
                       <HeartReact
                         productKey={p.image}
                         likes={p.likes ?? 0}
                         initialLiked={p.liked ?? false}
+                        className="shrink-0"
                       />
                     </figcaption>
                   </motion.figure>
