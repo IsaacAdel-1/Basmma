@@ -70,7 +70,7 @@ export default function Navbar() {
               <a
                 key={l.href}
                 href={l.href}
-                className="text-[.95rem] font-medium text-ink-2 transition-colors hover:text-wine"
+                className="text-[1.05rem] font-medium text-ink-2 transition-colors hover:text-wine"
               >
                 {l.label}
               </a>
@@ -81,7 +81,7 @@ export default function Navbar() {
             href={waLink("مرحبًا، حابب أستفسر عن التابلوهات 😊")}
             target="_blank"
             rel="noopener"
-            className="hidden rounded-full border-[1.5px] border-wine px-6 py-2.5 text-[.9rem] font-bold text-wine transition-all hover:bg-wine hover:text-white md:inline-flex"
+            className="hidden rounded-full border-[1.5px] border-wine px-6 py-2.5 text-[.95rem] font-bold text-wine transition-all hover:bg-wine hover:text-white md:inline-flex"
           >
             تواصل معنا
           </a>

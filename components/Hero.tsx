@@ -74,7 +74,7 @@ export default function Hero({
           لا تدع مساحاتك صامتة. اجعل كل زاوية، وكل مرحلة وكل ذكرى تروي فصلاً من
           قصتك الكاملة.
         </p>
-        <p className="mx-auto mt-3 max-w-[600px] text-[.98rem] leading-[1.9] text-gray-brand">
+        <p className="mx-auto mt-3 max-w-[600px] text-[.98rem] font-bold leading-[1.9] text-ink">
           بصماية ليست مجرد تابلوهات، بل رسائل تستحق أن تبقى حاضرة في يومك.
         </p>
 
