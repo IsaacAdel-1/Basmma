@@ -22,8 +22,8 @@ export default function Hero({
         {/* soft color glows */}
         <span className="absolute -left-24 -top-28 h-[460px] w-[460px] animate-drift rounded-full bg-[radial-gradient(circle,rgba(192,21,43,.12),transparent_70%)] blur-[60px]" />
         <span className="absolute -bottom-32 -right-28 h-[440px] w-[440px] animate-drift-slow rounded-full bg-[radial-gradient(circle,rgba(138,21,56,.12),transparent_70%)] blur-[60px]" />
-        {/* the photo sits in the bottom band and fades up into the clean background */}
-        <div className="absolute inset-x-0 bottom-0 h-[50%]">
+        {/* the photo fills the whole hero and stays fully visible */}
+        <div className="absolute inset-0">
           <Image
             src="/hero-bg.png"
             alt=""
@@ -32,7 +32,8 @@ export default function Hero({
             sizes="100vw"
             className="object-cover object-bottom"
           />
-          <div className="absolute inset-0 bg-[linear-gradient(180deg,#f5f3f4_0%,rgba(245,243,244,.80)_30%,rgba(245,243,244,.32)_100%)]" />
+          {/* light wash to keep the text readable without hiding the photo */}
+          <div className="absolute inset-0 bg-cream/35" />
         </div>
       </div>
 
